@@ -2,10 +2,10 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 const campgroundSchema = new Schema({
-  title: { type: String, required: true },
-  image: { type: String, required: true },
-  price: { type: Number, required: true },
-  description: { type: String, required: true },
+  title: { type: String, required: false },
+  image: { type: String, required: false},
+  price: { type: Number, required: false },
+  description: { type: String, required: false},
   location: String
 });
 

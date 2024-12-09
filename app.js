@@ -1,9 +1,9 @@
 import express from "express";
+import mongoose from "mongoose";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
-import mongoose from "mongoose";
-const __dirname = dirname(fileURLToPath(import.meta.url));
 import Campground from "./models/campground.js";
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 mongoose.connect("mongodb://localhost:27017/yelp-camp"), {
 
@@ -27,7 +27,7 @@ app.get("/", (req, res) => {
 
 app.get("/makecampground", async (req, res) => {
   const camp = new Campground({
-    title: "My Backyard",image: "https://source.unsplash.com/collection/483251", description: "cheap camping", price: 20
+    title: "My Backyard", image: "https://source.unsplash.com/collection/483251", description: "cheap camping", price: 20
   });
   await camp.save();
   res.send(camp);
