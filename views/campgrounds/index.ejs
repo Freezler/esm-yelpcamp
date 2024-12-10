@@ -12,7 +12,9 @@
   <ul>
     <% for (let campground of campgrounds) {%>
       <li>
-        <%= campground.title %>
+        <a href="<%= campground._id %>">
+          <%= campground.title %>
+        </a>
       </li>
       <% } %>
   </ul>
