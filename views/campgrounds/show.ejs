@@ -8,29 +8,20 @@
 </head>
 
 <body>
-  <header>
-    <h1>
-      <%= campground.title %>
-    </h1>
-    <h2>
-      <%= campground.location %>
-    </h2>
-  </header>
-  <section>
-    <figure>
-      <img src="https://picsum.photos/600/300/" alt="<%= campground.title %>" />
-      <figcaption>
-        <p>
-          <%= campground.description="Description goed here" %>
-        </p>
-      </figcaption>
-    </figure>
-  </section>
-  <footer>
-    <button type="button">
-      <a href="/campgrounds/">All Campgrounds</a>
-    </button>
-  </footer>
+  <h1>
+    <%= campground.title %>
+  </h1>
+  <h2>
+    <%= campground.location %>
+  </h2>
+  <figure>
+    <img src="https://picsum.photos/600/300/" alt="<%= campground.title %>" />
+    <figcaption>
+      <p>
+        <%= campground.description="Description goed here" %>
+      </p>
+    </figcaption>
+  </figure>
 </body>
 
 </html>
