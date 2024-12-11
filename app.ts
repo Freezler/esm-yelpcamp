@@ -1,10 +1,11 @@
-import express, { Application, Request, Response } from "express";
+import express, { Application, NextFunction, Request, Response } from "express";
 import methodOverride from "method-override";
+import mongoose from "mongoose";
+import morgan from "morgan";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
-import mongoose from "mongoose";
 import { Campground } from "./models/campground.ts";
-import  morgan  from "morgan"
+
 const app: Application = express();
 const port = process.env.PORT || 3000;
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -15,25 +16,40 @@ db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", () => {
   console.log("Database connected");
 });
+app.use((req: Request, res: Response, next: NextFunction) => {
+  console.log('My first custom middleware runs!');
+  return next(); // Continue to the next middleware or route handler
+  console.log('If first middlewares next() has no return the code after runs when all other middelware is done')
+});
+// app.use((req: Request, res: Response, next: NextFunction) => {
+//   console.log('My second custom middleware runs!');
+//   return next(); // return prevents it from running anything else.
+// });
+// app.use((req: Request, res: Response, next: NextFunction) => {
+//   console.log('My third custom middleware runs!');
+//   return next();
+// });
 
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(morgan('tiny'))
 
+
+
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
-app.get("/", (req, res) => {
+app.get("/", (_req, res) => {
   res.render("home");
 });
 
-app.get("/campgrounds", async (req: Request, res: Response) => {
+app.get("/campgrounds", async (_req: Request, res: Response) => {
   const campgrounds = await Campground.find({});
   res.render('campgrounds/index', { campgrounds })
 });
 
-app.get("/campgrounds/new", (req: Request, res: Response) => {
+app.get("/campgrounds/new", (_req: Request, res: Response) => {
   res.render('campgrounds/new')
 });
 app.post('/campgrounds', async (req: Request, res: Response) => {
