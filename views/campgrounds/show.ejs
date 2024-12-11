@@ -5,35 +5,47 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Show</title>
+  <link rel="stylesheet" href="../style.css">
 </head>
 
-<body>
-  <header>
-    <h1>
-      <%= campground.title %>
-    </h1>
-    <h2>
-      <%= campground.location %>
-    </h2>
-  </header>
-  <section>
+<body style="width: 100svw;display: flex;flex-direction: column;">
+  <div
+    style="min-width:460px; max-width: 460px;border:2px solid black;margin: 2rem auto;min-height: 520px;border-radius: 6px;background:hsla(272, 60%, 33%, 0.151);">
+    <header style="padding-inline: 48px; padding-block: 24px ;border-bottom: 2px solid black;">
+      <h1 style="font-size: x-large; color: crimson;">
+        <%= campground.title %>
+      </h1>
+      <h2 style="font-size: medium;color: rgb(87, 87, 96);font-weight: 400;">
+        <%= campground.location %>
+      </h2>
+    </header>
     <figure>
-      <img src="https://picsum.photos/600/300/" alt="<%= campground.title %>" />
+      <img src="https://picsum.photos/460/200/" alt="<%= campground.title %>" style="min-height: 200px;" />
       <figcaption>
-        <p>
-          <%= campground.description="Description goed here" %>
-        </p>
+        <div style="border: 1px dotted red;margin: 40px auto;">
+          <p style="margin-inline:auto;width: 30ch;text-wrap: pretty;">
+            <%=
+              campground.description="lLorem ipsum dolor sit amet consectetur, adipisicing elit. Exercitationem alias expedita velit, quia magnam fuga"
+              %>
+          </p>
+        </div>
       </figcaption>
     </figure>
-  </section>
-  <footer>
-    <button type="button">
-      <a href="/campgrounds/<%= campground._id %>/edit">Edit</a>
-    </button>
-    <button type="button">
-      <a href="/campgrounds">All Campgrounds</a>
-    </button>
-  </footer>
+
+    <footer style="display:flex;gap: 12px;align-items: center;justify-content: center;padding-bottom:16px ;">
+      <button type="button">
+        <a href="/campgrounds/<%= campground._id %>/edit">Edit</a>
+      </button>
+      <button type="button">
+        <a href="/campgrounds">All Camps</a>
+      </button>
+      <form action="/campgrounds/<%=campground._id%>?_method=DELETE" method="POST">
+        <button type="submit">Delete</button>
+      </form>
+    </footer>
+  </div>
+
+
 
 </body>
 
