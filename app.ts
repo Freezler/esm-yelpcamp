@@ -1,10 +1,10 @@
-import express from "express";
+import express, { Application, Request, Response } from "express";
 import methodOverride from "method-override";
 import mongoose from "mongoose";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 import Campground from "./models/campground.js";
-const app = express();
+const app: Application = express();
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 mongoose.connect("mongodb://localhost:27017/yelp-camp")
@@ -49,10 +49,21 @@ app.get('/campgrounds/:id/edit', async (req, res) => {
   res.render('campgrounds/edit', { campground })
 })
 
-app.put('/campgrounds/:id', async (req, res) => {
+app.put('/campgrounds/:id', async (req: Request, res: Response) => {
   const { id } = req.params;
   const campground = await Campground.findByIdAndUpdate(id, { ...req.body.campground });
-  res.redirect(`/campgrounds/${campground._id}`)
+  if (campground) {
+    res.redirect(`/campgrounds/${campground._id}`);
+  } else {
+    res.status(404).send("Campground not found");
+  }
+});
+
+app.delete('/campgrounds/:id', async (req, res) => {
+  const { id } = req.params;
+  await Campground.findByIdAndDelete(id);
+  res.redirect('/campgrounds');
+
 })
 
 app.listen(3000, () => {

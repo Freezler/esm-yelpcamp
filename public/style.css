@@ -1,36 +1,63 @@
 h1 {
-  color: rgb(0, 47, 255);
+    color: rgb(0, 47, 255);
 
-  font-size: 50px;
-  font-family: 'system-ui', 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
-  font-weight: bold;
+
+    font-weight: bold;
 }
 
 
 /* css reset  */
 
-*, *::before, *::after{
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
-*{
+* {
     margin: 0;
     padding: 0;
 }
 
-ul[role='list'], ol[role='list']{
+button {
+    transition: all cubic-bezier(0.175, 0.885, 0.32, 1.275) 900ms;
+
+    padding-block: 10px;
+    padding-inline: 16px;
+    background-color: aquamarine;
+    border-radius: 8px;
+    min-width: 100px;
+    border: 1px solid hsla(0, 79%, 13%, 0.9);
+
+    &:hover {
+        background: hsla(0, 50%, 61%, 0.9);
+
+    }
+
+}
+
+a:hover {
+    color: hsla(208, 100%, 97%, 0.938);
+}
+
+ul[role='list'],
+ol[role='list'] {
     list-style: none;
 }
 
-html:focus-within{
+html:focus-within {
     scroll-behavior: smooth;
 }
 
-a:not([class]){
+a:not([class]) {
     text-decoration-skip-ink: auto;
 }
 
-img, picture, svg, video, canvas{
+img,
+picture,
+svg,
+video,
+canvas {
     max-width: 100%;
     height: auto;
     vertical-align: middle;
@@ -39,15 +66,21 @@ img, picture, svg, video, canvas{
     background-size: cover;
 }
 
-input, button, textarea, select{
+input,
+button,
+textarea,
+select {
     font: inherit;
 }
 
-@media (prefers-reduced-motion: reduce){
+@media (prefers-reduced-motion: reduce) {
     html:focus-within {
         scroll-behavior: auto;
     }
-    *, *::before, *::after {
+
+    *,
+    *::before,
+    *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
@@ -56,7 +89,10 @@ input, button, textarea, select{
     }
 }
 
-body, html{
+body,
+html {
     height: 100%;
     scroll-behavior: smooth;
+    font-size: 16px;
+    font-family: 'system-ui', 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
 }
