@@ -1,10 +1,12 @@
 import express, { Application, Request, Response } from "express";
 import methodOverride from "method-override";
-import mongoose from "mongoose";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
+import mongoose from "mongoose";
 import { Campground } from "./models/campground.ts";
+import  morgan  from "morgan"
 const app: Application = express();
+const port = process.env.PORT || 3000;
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 mongoose.connect("mongodb://localhost:27017/yelp-camp")
@@ -17,6 +19,7 @@ db.once("open", () => {
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, "public")));
+app.use(morgan('tiny'))
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -25,26 +28,26 @@ app.get("/", (req, res) => {
   res.render("home");
 });
 
-app.get("/campgrounds", async (req, res) => {
+app.get("/campgrounds", async (req: Request, res: Response) => {
   const campgrounds = await Campground.find({});
   res.render('campgrounds/index', { campgrounds })
 });
 
-app.get("/campgrounds/new", (req, res) => {
+app.get("/campgrounds/new", (req: Request, res: Response) => {
   res.render('campgrounds/new')
 });
-app.post('/campgrounds', async (req, res) => {
+app.post('/campgrounds', async (req: Request, res: Response) => {
   const campground = new Campground(req.body.campground);
   await campground.save();
   res.redirect(`campgrounds/${campground._id}`);
 });
 
-app.get("/campgrounds/:id", async (req, res) => {
+app.get("/campgrounds/:id", async (req: Request, res: Response) => {
   const campground = await Campground.findById(req.params.id)
   res.render('campgrounds/show', { campground });
 });
 
-app.get('/campgrounds/:id/edit', async (req, res) => {
+app.get('/campgrounds/:id/edit', async (req: Request, res: Response) => {
   const campground = await Campground.findById(req.params.id)
   res.render('campgrounds/edit', { campground })
 })
@@ -59,13 +62,13 @@ app.put('/campgrounds/:id', async (req: Request, res: Response) => {
   }
 });
 
-app.delete('/campgrounds/:id', async (req, res) => {
+app.delete('/campgrounds/:id', async (req: Request, res: Response) => {
   const { id } = req.params;
   await Campground.findByIdAndDelete(id);
   res.redirect('/campgrounds');
 
 })
 
-app.listen(3000, () => {
-  console.log("Server started on port 3000");
+app.listen(port, () => {
+  console.log(`Server started on port ${port}`);
 });
