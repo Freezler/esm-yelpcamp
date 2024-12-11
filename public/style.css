@@ -1,10 +1,6 @@
-h1 {
-    color: rgb(0, 47, 255);
-
-
-    font-weight: bold;
+:root {
+    --fill: hsla(345, 93%, 53%, 0.916);
 }
-
 
 /* css reset  */
 
@@ -21,18 +17,6 @@ h1 {
 
 button {
     transition: all cubic-bezier(0.175, 0.885, 0.32, 1.275) 900ms;
-
-    padding-block: 10px;
-    padding-inline: 16px;
-    background-color: aquamarine;
-    border-radius: 8px;
-    min-width: 100px;
-    border: 1px solid hsla(0, 79%, 13%, 0.9);
-
-    &:hover {
-        background: hsla(0, 50%, 61%, 0.9);
-
-    }
 
 }
 
@@ -93,6 +77,13 @@ body,
 html {
     height: 100%;
     scroll-behavior: smooth;
-    font-size: 16px;
+    font-size: 10px;
     font-family: 'system-ui', 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    min-width: 100svw;
 }
