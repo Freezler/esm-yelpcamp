@@ -1,24 +1,16 @@
 <nav class="navbar">
-
-        <%- include('../../views/partials/icon')%>
-            <a class="navbar-brand " href="../campgrounds/">esm yelpcam</a>
-            <button type="button">
-                <span class="">need something to do</span>
-            </button>
-            <div>
-                <ul class="">
-                    <li class="">
-                        <a class="" href="../campgrounds">All Campgrounds</a>
-                    </li>
-                    <li class="">
-                        <a class="" href="/campgrounds/new">New Campground </a>
-                    </li>
-
-                </ul>
+    <%- include('../../views/partials/icon')%>
+        <div class="navigation">
+            <ul class="">
+                <li class=""role="nav">
+                    <a class="" href="/campgrounds">All Campgrounds</a>
+                </li>
+                <li class=""role="nav">
+                    <a class="" href="/campgrounds/new">New Campground </a>
+                </li>
                 <form>
                     <input class="" type="search" placeholder="Search" aria-label="Search">
                     <button type="submit">Search</button>
                 </form>
-
-
-</nav>
+            </ul>
+            </nav>

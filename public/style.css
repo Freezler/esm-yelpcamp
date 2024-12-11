@@ -20,8 +20,16 @@ button {
 
 }
 
+a {
+    width: 100%;
+}
+
 a:hover {
     color: hsla(208, 100%, 97%, 0.938);
+}
+
+a:link {
+    text-decoration: none;
 }
 
 ul[role='list'],
@@ -82,8 +90,52 @@ html {
 }
 
 .navbar {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
     justify-content: space-between;
-    min-width: 100svw;
+    width: 100svw;
+    padding-inline: 16px;
+}
+
+.navigation {
+    display: flex;
+    justify-content: end;
+    width: 100%;
+}
+
+.list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: full;
+    text-decoration: none;
+    gap: 8px;
+    margin-block: 48px;
+    border: 1px solid red;
+    place-self: center;
+    padding-inline: 24px;
+    padding-block: 48px;
+    border-radius: 8px;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+    border-collapse: collapse;
+    gap: 16px;
+    place-self: center;
+    form{
+        padding-top: 14px;
+    }
+}
+
+li {
+    border: 1px solid rgb(67, 59, 59);
+    padding-inline: 8px;
+    padding-block: 16px;
+    border-radius: 8px;
+}
+
+li[role="nav"] {
+    border: none;
 }

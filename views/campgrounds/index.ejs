@@ -1,26 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Campgrounds</title>
-<link rel="stylesheet" href="../style.css">
-</head>
-
-<body>
+<%- include('../partials/head')%>
+  <%- include('../partials/navbar')%>
   <h1>All Campgrounds!</h1>
   <button type="button"><a href="/campgrounds/new">Add campsground</a></button>
-  <ul>
-    <% for (let campground of campgrounds) {%>q
+  <ul class="list" role="list">
+    <% for (let campground of campgrounds) {%>
+      <a href="campgrounds/<%= campground._id %>">
       <li>
-        <a href="campgrounds/<%= campground._id %>">
           <%= campground.title %>
-        </a>
-      </li>
+        </li>
+      </a>
       <% } %>
   </ul>
-
-</body>
-
-</html>
+<%- include('../partials/footer')%>
