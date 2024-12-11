@@ -3,7 +3,7 @@ import methodOverride from "method-override";
 import mongoose from "mongoose";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
-import Campground from "./models/campground.js";
+import { Campground } from "./models/campground.ts";
 const app: Application = express();
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
