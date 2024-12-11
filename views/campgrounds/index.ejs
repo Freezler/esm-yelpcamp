@@ -2,19 +2,19 @@
 <html lang="en">
 
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Campgrounds</title>
-  <link rel="stylesheet" href="../style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Campgrounds</title>
+<link rel="stylesheet" href="../style.css">
 </head>
 
 <body>
   <h1>All Campgrounds!</h1>
   <button type="button"><a href="/campgrounds/new">Add campsground</a></button>
   <ul>
-    <% for (let campground of campgrounds) {%>
+    <% for (let campground of campgrounds) {%>q
       <li>
-        <a href="<%= campground._id %>">
+        <a href="campgrounds/<%= campground._id %>">
           <%= campground.title %>
         </a>
       </li>
