@@ -128,3 +128,89 @@ Both approaches achieve the same result, but the first approach using __dirname 
 ### Conclusion
 
 In summary, when using ES modules in Node.js, you need to define __dirname manually or use an alternative approach to get the current directory. The choice between the two approaches depends on your personal preference and the specific requirements of your project. And this is it.
+
+-----------------
+
+## `package.json` Explained
+
+This file defines the metadata, dependencies, and scripts for the project.
+
+### General Information
+
+- **`name`**: `"yelpcamp"`
+  - The name of the project or package.
+
+- **`version`**: `"1.0.0"`
+  - The current version of the project.
+
+- **`type`**: `"module"`
+  - Specifies that the project uses ES modules (i.e., `import`/`export` syntax instead of `require`/`module.exports`).
+
+- **`main`**: `"src/app.ts"`
+  - The entry point of the application, usually the file where the app starts running. In this case, it’s the `app.ts` file located in the `src` folder.
+
+- **`scripts`**: Defines custom commands to run in the terminal.
+  - **`dev`**: `"tsx --env-file=.env app.ts"`
+    - Runs the application in development mode using the `tsx` tool. The `--env-file=.env` option loads environment variables from a `.env` file.
+  - **`start`**: `"tsx --env-file=.env app.ts"`
+    - Runs the application in a similar way to `dev`. Typically, `start` is used for production, but in this case, it runs the app in the same manner as `dev`.
+  - **`test`**: `"echo \"Error: no test specified\" && exit 1"`
+    - A placeholder for running tests. Currently, it just prints an error message and exits with a status of `1`, indicating no tests are defined.
+
+- **`keywords`**: `[]`
+  - An empty array, typically used to define search terms for npm or other package management tools.
+
+- **`author`**: `""`
+  - The author of the project. This is left empty here.
+
+- **`license`**: `"ISC"`
+  - The license type for the project. `ISC` is a permissive open-source license.
+
+- **`description`**: `""`
+  - A short description of the project. This is empty here.
+
+### Dependencies
+
+These are the packages required for the project to run in production.
+
+- **`ejs`**: `^3.1.10`
+  - A templating engine for rendering HTML pages. Commonly used in Express apps for server-side rendering of views.
+
+- **`express`**: `^4.21.2`
+  - A minimal and flexible Node.js web application framework. It simplifies the creation of web servers and APIs.
+
+- **`method-override`**: `^3.0.0`
+  - Middleware for overriding HTTP methods like `PUT` and `DELETE` in environments that don't support them natively (like HTML forms).
+
+- **`mongoose`**: `^8.8.4`
+  - An Object Data Modeling (ODM) library for MongoDB and Node.js, providing a straightforward way to interact with MongoDB from JavaScript.
+
+- **`morgan`**: `^1.10.0`
+  - A HTTP request logger middleware for Node.js, commonly used for logging request details in development and production environments.
+
+### DevDependencies
+
+These are the packages required only for development (e.g., testing, build tools, type definitions).
+
+- **`@types/express`**: `^5.0.0`
+  - TypeScript definitions for the `express` module, enabling type-checking and IntelliSense in TypeScript projects.
+
+- **`@types/method-override`**: `^3.0.0`
+  - TypeScript definitions for the `method-override` module.
+
+- **`@types/morgan`**: `^1.9.9`
+  - TypeScript definitions for the `morgan` module.
+
+- **`@types/node`**: `^22.10.1`
+  - TypeScript definitions for Node.js, which includes types for Node's built-in modules like `fs`, `path`, and `http`.
+
+- **`tsx`**: `^4.19.2`
+  - A tool that enables running TypeScript files directly without compiling them first. It's commonly used for running TypeScript code in a development environment.
+
+---
+
+### Summary
+
+This `package.json` sets up a TypeScript-based project using `express`, `mongoose`, `morgan`, and other dependencies. It includes a `dev` script to start the project in development mode using `tsx` and an empty `test` script placeholder. The dependencies are divided into regular dependencies (required in production) and devDependencies (required only for development purposes).
+
+For future reference, if you're working with TypeScript, `@types/` packages are essential for enabling type-checking and autocompletion for JavaScript libraries.
