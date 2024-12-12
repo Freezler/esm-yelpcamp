@@ -1,21 +1,25 @@
 <%- include('../partials/head')%>
   <%- include('../partials/navbar')%>
-    <div>
-      <%= campground.location %>
+    <header>
+      <section>
+        <h2>
+          <%= campground.location %>
         </h2>
-        </section>
-        <section>
-          <%- include('../partials/icon')%>
-        </section>
-        </header>
-        <figure>
-          <img src="https://picsum.photos/460/200/" alt="<%= campground.title %>">
+      </section>
+      <section>
+        <%- include('../partials/icon')%>
+      </section>
+    </header>
+    <figure>
+      <img src="https://picsum.photos/460/200/" alt="<%= campground.title %>">
+      <figcaption>
+        <h3>
           <%=
             campground.description="lLorem ipsum dolor sit amet consectetur, adipisicing elit. Exercitationem alias expedita velit, quia magnam fuga"
             %>
-            </p>
-    </div>
-    </figcaption>
+        </h3>
+
+      </figcaption>
     </figure>
 
 

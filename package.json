@@ -4,8 +4,8 @@
   "type": "module",
   "main": "src/app.ts",
   "scripts": {
-    "dev": "tsx --env-file=.env app.ts",
-    "start": "tsx --env-file=.env app.ts",
+    "dev": "tsx watch --env-file=.env app.ts",
+    "start": "tsx watch --env-file=.env app.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

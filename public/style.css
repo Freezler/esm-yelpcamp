@@ -111,7 +111,7 @@ html {
     text-decoration: none;
     gap: 8px;
     margin-block: 48px;
-    border: 1px solid red;
+    border: 1px solid rgb(255, 123, 0);
     place-self: center;
     padding-inline: 24px;
     padding-block: 48px;
@@ -124,7 +124,8 @@ ul {
     border-collapse: collapse;
     gap: 16px;
     place-self: center;
-    form{
+
+    form {
         padding-top: 14px;
     }
 }

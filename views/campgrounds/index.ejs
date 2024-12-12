@@ -1,14 +1,15 @@
-<%- include('../partials/head')%>
-  <%- include('../partials/navbar')%>
-  <h1>All Campgrounds!</h1>
-  <button type="button"><a href="/campgrounds/new">Add campsground</a></button>
-  <ul class="list" role="list">
-    <% for (let campground of campgrounds) {%>
-      <a href="campgrounds/<%= campground._id %>">
-      <li>
-          <%= campground.title %>
-        </li>
-      </a>
-      <% } %>
-  </ul>
-<%- include('../partials/footer')%>
+<%- include('../partials/head') %>
+  <%- include('../partials/navbar') %>
+    <h1>All Campgrounds!</h1>
+    <button type="button"><a href="/campgrounds/new">Add campsground</a></button>
+    <ul class="list" role="list">
+      <% for (let campground of campgrounds) {%>
+        <a href="campgrounds/<%= campground._id %>">
+          <li>
+            <%= campground.title %>
+          </li>
+        </a>
+        <% } %>
+    </ul>
+
+    <%- include('../partials/footer')%>
