@@ -1,5 +1,4 @@
-<%- include('../partials/head')%>
-  <%- include('../partials/navbar')%>
+<% layout('./layouts/boilerplate.ejs') %>
   <main>
     <section>
       <form action="/campgrounds" method="POST">
@@ -14,5 +13,4 @@
         <button type="submit">Add Campground</button>
       </form>
     </section>
-    </main>
-    <%- include('../partials/footer')%>
+  </main>

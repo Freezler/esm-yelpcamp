@@ -1,5 +1,6 @@
-<%- include('../partials/head') %>
-  <%- include('../partials/navbar') %>
+
+<% layout('./layouts/boilerplate.ejs') %>
+
     <h1>All Campgrounds!</h1>
     <button type="button"><a href="/campgrounds/new">Add campsground</a></button>
     <ul class="list" role="list">
@@ -12,4 +13,4 @@
         <% } %>
     </ul>
 
-    <%- include('../partials/footer')%>
+    

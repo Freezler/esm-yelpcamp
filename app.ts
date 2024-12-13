@@ -1,3 +1,4 @@
+import ejsMate from "ejs-mate";
 import express, { Application, NextFunction, Request, Response } from "express";
 import methodOverride from "method-override";
 import mongoose from "mongoose";
@@ -10,20 +11,20 @@ const app: Application = express();
 const port = process.env.PORT || 3000;
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-interface CustomRequest extends Request {
-	requestTime?: number;
-}
-
-
-
+app.engine('ejs', ejsMate)
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
 
 mongoose.connect("mongodb://127.0.0.1:27017/yelp-camp")
-
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", () => {
 	console.log("Database connected");
 });
+
+interface CustomRequest extends Request {
+	requestTime?: number;
+}
 
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'));
@@ -35,12 +36,14 @@ app.use((req, res, next: NextFunction) => {
 	return next();
 });
 
+
+// never authenticate passwords this way.ever!
 const verifyPassword = (req: Request, res: Response, next: NextFunction) => {
 	const { password } = req.query;
 	if (password === 'chickennugget') {
 		return next();
 	}
-	res.send('Sorry you need a password')
+	res.send('Sorry, you need a password dummy')
 }
 
 app.use((req: Request, res: Response, next: NextFunction) => {
@@ -53,8 +56,6 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 // return next(); // return prevents it from running anything else.
 // });
 
-app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "views"));
 
 app.get("/", (req, res) => {
 	res.render("home");
