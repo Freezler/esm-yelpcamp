@@ -1,36 +1,33 @@
 <% layout('./layouts/boilerplate.ejs') %>
-  <header>
-    <section>
-      <h2>
-        <%= campground.location %>
-      </h2>
-    </section>
-    <section>
-      <%- include('../partials/icon')%>
-    </section>
-  </header>
-  <figure>
-    <img src="https://picsum.photos/460/200/" alt="<%= campground.title %>">
-    <figcaption>
-      <h3>
-        <%=
-          campground.description="lLorem ipsum dolor sit amet consectetur, adipisicing elit. Exercitationem alias expedita velit, quia magnam fuga"
-          %>
-      </h3>
 
-    </figcaption>
-  </figure>
+<header>
+  <section>
+    <h2>
+      <%= campground.location %>
+    </h2>
+  </section>
+  <section>
+    <%- include('../partials/icon')%>
+  </section>
+</header>
+<figure>
+  <img src="<%= campground.image  %>" alt="<%= campground.title %>">
+  <figcaption>
+    <p><%= campground.description %></p>
+    <p><strong>$ <%= campground.price %></strong> /night</p>
+
+  </figcaption>
+</figure>
 
 
-  <footer>
-    <button type="button">
-      <a href="/campgrounds/<%= campground._id %>/edit">Edit</a>
-    </button>
-    <button type="button">
-      <a href="/campgrounds">All Camps</a>
-    </button>
-    <form action="/campgrounds/<%=campground._id%>?_method=DELETE" method="POST">
-      <button type="submit">Delete</button>
-    </form>
-  </footer>
-  </div>
+<footer>
+
+  <a href="/campgrounds/<%= campground._id %>/edit">Edit</a>
+
+
+  <a href="/campgrounds">All Camps</a>
+
+  <form action="/campgrounds/<%=campground._id%>?_method=DELETE" method="POST">
+    <button type="submit">Delete</button>
+  </form>
+</footer>
