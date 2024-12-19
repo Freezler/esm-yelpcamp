@@ -1,45 +1,78 @@
 <%- include('partials/head.ejs') %>
-<%- include('partials/navbar.ejs') %>
-<div class="container  vh-100">
-    <h1>YelpCamp</h1>
-    <!-- <h1>Language Detector</h1> <textarea class="form-control mb-3"        id="textInput" rows="3"        placeholder="Enter text to detect language..."></textarea> <button        class="btn" onclick="detectLanguage()">Detect Language</button>    <div class="mt-3">        <p id="result" class="alert alert-info" style="display: none;"></p>    </div> -->
-</div>
-<script>
-    async function detectLanguage() {
-        const resultElement = document.getElementById('result');
-        const textInput = document.getElementById('textInput').value.trim();
-        if (!textInput) {
-            resultElement.innerText = 'Please enter some text';
-            resultElement.style.display = 'block';
-            return;
-        }
-        try {
-            resultElement.innerText = 'Detecting language...';
-            resultElement.style.display = 'block';
-            const response = await fetch('/detect-language', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    text: textInput
-                })
-            });
-            const data = await response.json();
-            if (data.languages && data.languages.length > 0) {
-                resultElement.innerHTML =
-                    `<strong>${data.message}</strong><br>`;
-                data.languages.forEach(lang => {
-                    resultElement.innerHTML +=
-                        `${lang.name} (${lang.confidence})<br>`;
-                });
-            } else {
-                resultElement.innerText =
-                    'Sorry, I don\'t know that language';
+    <%- include('partials/navbar.ejs') %>
+        <header>
+            <!-- Intro settings -->
+            <style>
+                /* Default height for small devices */
+                #intro-example {
+                    height: 100svh
+                }
+
+                /* Height for devices larger than 992px */
+                @media (min-width: 992px) {
+                    #intro-example {
+                        height: 600px;
+                    }
+                }
+            </style>
+
+
+
+            <!-- Background image -->
+            <div id="intro-example" class="p-5 text-center bg-image min-vh-100 min-vw-100 object-fit-cover"
+                style="background-image: url('https://mdbcdn.b-cdn.net/img/new/slides/041.webp');object-fit: cover; background-repeat: no-repeat;background-size: cover;">
+                <div class="mask rounded-5" style="background-color: rgba(0, 0, 0, 0.4);">
+                    <div class="d-flex justify-content-center align-items-center h-100">
+                        <div class="text-white">
+                            <h1 class="mb-3">welcome to YelpCamp</h1>
+                            <h5 class="mb-4">
+                                Best & free guide for Campgrounds
+                            </h5>
+                            <a data-mdb-ripple-init class="btn btn-outline-light btn-lg m-2" href="/campgrounds/"
+                                role="button" rel="nofollow" target="_blank">See all Campgrounds</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Background image -->
+        </header>
+        <script>
+            async function detectLanguage() {
+                const resultElement = document.getElementById('result');
+                const textInput = document.getElementById('textInput').value.trim();
+                if (!textInput) {
+                    resultElement.innerText = 'Please enter some text';
+                    resultElement.style.display = 'block';
+                    return;
+                }
+                try {
+                    resultElement.innerText = 'Detecting language...';
+                    resultElement.style.display = 'block';
+                    const response = await fetch('/detect-language', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            text: textInput
+                        })
+                    });
+                    const data = await response.json();
+                    if (data.languages && data.languages.length > 0) {
+                        resultElement.innerHTML =
+                            `<strong>${data.message}</strong><br>`;
+                        data.languages.forEach(lang => {
+                            resultElement.innerHTML +=
+                                `${lang.name} (${lang.confidence})<br>`;
+                        });
+                    } else {
+                        resultElement.innerText =
+                            'Sorry, I don\'t know that language';
+                    }
+                } catch (error) {
+                    resultElement.innerText = 'Error detecting language';
+                }
             }
-        } catch (error) {
-            resultElement.innerText = 'Error detecting language';
-        }
-    }
-</script>
-<%- include('partials/footer.ejs') %>
+        </script>
+        <%- include('partials/footer.ejs') %>

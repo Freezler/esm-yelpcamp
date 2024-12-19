@@ -1,5 +1,5 @@
 <% layout('./layouts/boilerplate.ejs') %>
-  <div class="row">
+  <div class="row mt-5">
     <h1 class="text-center">Edit Campground</h1>
     <div class="col-lg-6 offset-lg-3">
       <form action="/campgrounds/<%= campground._id %>?_method=PUT" method="POST" novalidate class="validated-form">
@@ -29,8 +29,8 @@
             required><%= campground.description %></textarea>
           <div class="valid-feedback"> Looks good! </div>
         </div>
-        <div class="mb-3 d-flex justify-content-around"> <button class="btn btn-sm btn-outline-dark">Update
-            Campground</button><a href="/campgrounds/<%= campground._id %>" class="btn btn-sm btn-outline-light">Back To
+        <div class="mb-3 d-flex justify-content-around"> <button class="btn  btn-outline-dark">Update
+            Campground</button><a href="/campgrounds/<%= campground._id %>" class="btn  btn-outline-dark">Back To
             Campground</a>
         </div>
     </div>

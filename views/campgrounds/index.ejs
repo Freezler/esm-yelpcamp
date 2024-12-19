@@ -1,29 +1,31 @@
 <% layout('layouts/boilerplate')%>
 
-  <div class="mb-5">
-    <h1 class="text-center pt-4">All Campgrounds</h1>
-    <a href="/campgrounds/new" class="btn btn-outline-light ">Add new Campground</a>
+  <div class="my-5">
+    <h1 class="text-center">All Campgrounds</h1>
+
   </div>
   <% for (let campground of campgrounds){%>
-    <div class="card mb-5 border border-2 w-auto rounded-top-5 shadow-sm  my-auto ">
-      <div class="row">
-        <div class=" col-sm-12 col-12  col-md-12 col-lg-6 overflow-hidden object-fit-cover">
-          <img class="img-fluid rounded-4 card-img-top  overflow-hidden" alt="" src="<%=campground.image%>">
+    <div class="card mb-5 border border-2 w-auto rounded-top-5 shadow-sm
+     ">
+      <div class="row mb-2">
+        <div class=" col-sm-12 col-12 gap-4 col-md-12 col-lg-6 overflow-hidden object-fit-cover">
+          <img class="img-fluid rounded-4 object-fit-cover   col-md-12 h-auto bac" alt="" src="<%=campground.image%>">
         </div>
-        <div class="col-lg-6 col-sm-12 col-12">
-          <div class="card-body">
+        <div class="col-lg-6 col-sm-12 col-12 text-center ">
+          <div class=" card-body my-2">
             <h5 class="card-title">
               <%= campground.title %>
             </h5>
-            <p class="card-text w-75 ">
-              <%= campground.description %>
-            </p>
             <p class="card-text">
               <small class="text-muted">
                 <%= campground.location%>
               </small>
             </p>
-            <a class="btn btn-outline-dark text-success" href="/campgrounds/<%=campground._id%>">View
+            <p class="card-text w-100 px-2 my-5  my-lg-5">
+              <%= campground.description %>
+            </p>
+
+            <a class="btn btn-outline-dark text-success " href="/campgrounds/<%=campground._id%>">View
               <%=campground.title%>
             </a>
           </div>

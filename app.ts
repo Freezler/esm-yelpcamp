@@ -96,6 +96,27 @@ app.post('/detect-language', (req: Request, res: Response) => {
 	res.json(result);
 });
 
+app.get("/campgrounds/search", async (req: Request, res: Response) => {
+	const searchQuery = req.query.searchQuery;
+	try {
+		let campgrounds;
+		if (searchQuery) {
+			campgrounds = await Campground.find({
+				$or: [
+					{ title: { $regex: searchQuery as string, $options: 'i' } },
+					{ description: { $regex: searchQuery as string, $options: 'i' } }
+				]
+			});
+		} else {
+			campgrounds = await Campground.find({});
+		}
+		res.render('campgrounds/index', { campgrounds });
+	} catch (e) {
+		console.error(e);
+		res.redirect('/campgrounds');
+	}
+});
+
 app.get("/campgrounds/:id", async (req: Request, res: Response) => {
 	const campground = await Campground.findById(req.params.id)
 	res.render('campgrounds/show', { campground });
