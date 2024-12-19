@@ -1,6 +1,6 @@
 import mongoose, { Document, Schema } from "mongoose";
 
-export interface Campground extends Document {
+export interface ICampground extends Document {
   title: String;
   price: Number;
   description: string;
@@ -8,7 +8,7 @@ export interface Campground extends Document {
   image: string;
 }
 
-const CampgroundSchema = new Schema<Campground>({
+const CampgroundSchema = new Schema<ICampground>({
   title: { type: String, required: true },
   price: { type: Number, required: true },
   description: {
@@ -18,6 +18,6 @@ const CampgroundSchema = new Schema<Campground>({
   image: { type: String }
 });
 
-export const Campground = mongoose.model<Campground>("Campground", CampgroundSchema);
+export const Campground = mongoose.model<ICampground>("Campground", CampgroundSchema);
 
 export default Campground;

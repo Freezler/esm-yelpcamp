@@ -1,38 +1,35 @@
-<% layout('./layouts/boilerplate.ejs') %>
-<header
-    class="d-flex w-100 justify-content-between gap-5 j justify-content-md-start align-items-md-auto align-content-md-around">
-    <section>
-        <h1>
-            <%= campground.title %>
-        </h1>
-        <p class="text-muted  translate-middle-y justify-content-end">
-            <%= campground.location %>
-        </p>
-    </section>
-    <section class="">
-        <%- include('../partials/icon') %>
-    </section>
-</header>
-<figure class="d-flex flex-column col-md-8"> <img
-        src="<%= campground.image %>" width="100%"
-        style="max-height:360px;  min-height: 260px;"
-        alt="<%= campground.title %>">
-    <figcaption class="">
-        <p
-            class="bg-blue-50 w-25  text-center py-0  text-info-emphasis mr-auto mt-2 rounded-pill">
-        </p>
-        <%= campground.description %>
-        </p>
-        <p><strong>$
-                <%= campground.price %>
-            </strong>/night</p>
-    </figcaption>
-</figure>
-<footer class="d-flex align-top gap-1"> <a class="btn btn-outline-dark "
-        href="/campgrounds/<%= campground._id %>/edit">Edit</a>
-    <a class="btn btn-outline-dark " href="/campgrounds">All Camps</a>
-    <form
-        action="/campgrounds/<%= campground._id %>?_method=DELETE"
-        method="POST"> <button class="btn btn-outline-dark "
-            type="submit">Delete</button> </form>
-</footer>
+<% layout('layouts/boilerplate')%>
+
+    <div class="row">
+        <div class="col-lg-6 offset-lg-3 offset-0">
+            <div class="card mb-5 border border-2 w-auto shadow-sm">
+                <img src="<%= campground.image%>"
+                    class=" card-img-top object-fit-cover card-img-top img-fluid h-100 w-100" alt="random image">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <%= campground.title%>
+                    </h5>
+                    <p class="card-text">
+                        <%= campground.description%>
+                    </p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item text-muted">
+                        <%= campground.location%>
+                    </li>
+                    <li class="list-group-item">$<%= campground.price%>/night</li>
+                </ul>
+                <div class=" w-100 card-body gap-1 d-flex flex-row justify-items-center">
+                    <a class=" btn btn-outline-dark w-100 mb-2 " href="/campgrounds/<%=campground._id%>/edit">Edit</a>
+                    <a class="card-link btn btn-outline-dark  w-100 mb-2" href="/campgrounds/">back</a>
+                    <form class="" action=" /campgrounds/<%=campground._id%>?_method=DELETE" method="POST">
+                    </form>
+                    <button class="card-link text-center btn btn-danger mb-2 w-100  ">Delete</button>
+                    </form>
+                </div>
+                <div class="card-footer text-muted border border-1">
+                    just now!
+                </div>
+            </div>
+        </div>
+    </div>

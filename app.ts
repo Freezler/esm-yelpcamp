@@ -7,6 +7,7 @@ import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 import { Campground } from "./models/campground.ts";
 import { detectLanguages } from "./utils/languageDetection.ts";
+import { ExpressError } from './utils/ExpressError.ts';
 
 const app: Application = express();
 const port = process.env.PORT || 3000;
