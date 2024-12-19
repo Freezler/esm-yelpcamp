@@ -47,7 +47,6 @@ app.use(function (req: Request, res: Response, next: NextFunction) {
 	return next();
 });
 
-
 // app.use((req: Request, res: Response, next: NextFunction) => {
 // 	console.log('My first custom middleware runs!');
 // 	// Continue to the next middleware or route handler
@@ -59,7 +58,6 @@ app.use(function (req: Request, res: Response, next: NextFunction) {
 // });
 
 app.get("/", (req: Request, res: Response) => {
-
 	res.render("home");
 });
 
@@ -141,9 +139,7 @@ app.delete('/campgrounds/:id', async (req: Request, res: Response) => {
 	const { id } = req.params;
 	await Campground.findByIdAndDelete(id);
 	res.redirect('/campgrounds');
-
 })
-
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
 	console.error(`****************ERROR******************`);
