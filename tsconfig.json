@@ -11,5 +11,13 @@
     "emitDeclarationOnly": true,
     "declaration": true,
     "allowImportingTsExtensions": true,
-  }
+    "outDir": "./dist",
+    "rootDir": "."
+  },
+  "include": [
+    "**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

@@ -13,9 +13,16 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@types/chalk": "^2.2.4",
+    "@types/langs": "^2.0.5",
+    "chalk": "^5.4.0",
     "ejs": "^3.1.10",
     "ejs-mate": "^4.0.0",
     "express": "^4.21.2",
+    "franc": "^6.2.0",
+    "franc-all": "^7.2.0",
+    "lang": "^0.1.1",
+    "langs": "^2.0.0",
     "method-override": "^3.0.0",
     "mongoose": "^8.8.4",
     "morgan": "^1.10.0"

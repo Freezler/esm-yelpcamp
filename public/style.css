@@ -1,10 +1,12 @@
-:root {
-    --fill: hsla(345, 93%, 53%, 0.916);
+
+
+/* :root {
+    --fill: hsla(140, 93%, 53%, 0.916);
 }
 
 /* css reset  */
 
-*,
+/* *,
 *::before,
 *::after {
     box-sizing: border-box;
@@ -139,4 +141,4 @@ li {
 
 li[role="nav"] {
     border: none;
-}
+}  */
