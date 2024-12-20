@@ -1,19 +1,18 @@
 <% layout('layouts/boilerplate')%>
-
   <div class="my-5">
     <h1 class="text-center">All Campgrounds</h1>
-
   </div>
+
   <% for (let campground of campgrounds){%>
-    <div class="card mb-5 border border-2 w-auto rounded-top-5 shadow-sm
-     ">
-      <div class="row mb-2">
-        <div class=" col-sm-12 col-12 gap-4 col-md-12 col-lg-6 overflow-hidden object-fit-cover">
-          <img class="img-fluid rounded-4 object-fit-cover   col-md-12 h-auto bac" alt="" src="<%=campground.image%>">
+    <div class="card mb-5 border border-gray border-2 rounded-5 shadow-sm overflow-hidden mx-auto"
+      style="max-width: 1200px; max-height: 700px;">
+      <div class="row g-0 h-100">
+        <div class="col-12 col-lg-6 h-100">
+          <img class="img-fluid w-100 h-100 object-fit-cover" alt="<%= campground.title %>" src="<%=campground.image%>">
         </div>
-        <div class="col-lg-6 col-sm-12 col-12 text-center ">
-          <div class=" card-body my-2">
-            <h5 class="card-title">
+        <div class="col-10 col-lg-6 mx-auto my-auto ">
+          <div class="card-body h-100 ">
+            <h5 class="card-title w-100 w-sm-50">
               <%= campground.title %>
             </h5>
             <p class="card-text">
@@ -21,7 +20,7 @@
                 <%= campground.location%>
               </small>
             </p>
-            <p class="card-text w-100 px-2 my-5  my-lg-5">
+            <p class="card-text  ">
               <%= campground.description %>
             </p>
 
