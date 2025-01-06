@@ -5,10 +5,12 @@ import mongoose from "mongoose";
 import morgan from "morgan";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
-import { Campground } from "./models/campground.ts";
+import Campground from "./models/campground.ts";
 import catchAsync from "./utils/catchAsync.ts";
 import { ExpressError } from './utils/ExpressError.ts';
 import { detectLanguages } from "./utils/languageDetection.ts";
+import { campgroundSchema } from "./schemas.ts";
+
 
 const app: Application = express();
 const port = process.env.PORT || 3000;
@@ -24,6 +26,17 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(morgan('tiny'));
 app.use(express.json());
+
+const validateCampground = (req: Request, res: Response, next: NextFunction) => {
+
+	const { error } = campgroundSchema.validate(req.body);
+	if (error) {
+		const msg = error.details.map(el => el.message).join(',')
+		throw new ExpressError(msg, 400);
+	} else {
+		next();
+	}
+}
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/yelp-camp")
 	.then(() => console.log("Database connected"))
@@ -45,16 +58,6 @@ app.use(function (req: Request, res: Response, next: NextFunction) {
 	return next();
 });
 
-// app.use((req: Request, res: Response, next: NextFunction) => {
-// 	console.log('My first custom middleware runs!');
-// 	// Continue to the next middleware or route handler
-// 	return next();
-// });
-// app.use((req: Request, res: Response, next: NextFunction) => {
-// console.log('My second custom middleware runs!');
-
-// });
-
 app.get("/", (req: Request, res: Response) => {
 	res.render("home");
 });
@@ -70,7 +73,6 @@ app.get("/secret", verifyPassword, (req: Request, res: Response) => {
 app.get("/error", (req: Request, res: Response) => {
 	console.log('Forcing an error');
 	throw new Error('This is a forced error');
-
 });
 
 app.get("/campgrounds", catchAsync(async (req: Request, res: Response) => {
@@ -82,8 +84,9 @@ app.get("/campgrounds/new", (req: Request, res: Response) => {
 	res.render('campgrounds/new')
 });
 
-app.post('/campgrounds', catchAsync(async (req: Request, res: Response) => {
-	if (!req.body.campground) throw new ExpressError('Invalid Campground Data', 400);
+app.post('/campgrounds', validateCampground, catchAsync(async (req: Request, res: Response, next: NextFunction) => {
+	// if (!req.body.campground) throw new ExpressError('Invalid Campground Data', 400);
+
 	const campground = new Campground(req.body.campground);
 	await campground.save();
 	res.redirect(`campgrounds/${campground._id}`);
@@ -126,7 +129,7 @@ app.get('/campgrounds/:id/edit', catchAsync(async (req: Request, res: Response) 
 	res.render('campgrounds/edit', { campground })
 }));
 
-app.put('/campgrounds/:id', catchAsync(async (req: Request, res: Response) => {
+app.put('/campgrounds/:id', validateCampground, catchAsync(async (req: Request, res: Response) => {
 	const { id } = req.params;
 	const campground = await Campground.findByIdAndUpdate(id, { ...req.body.campground });
 	if (campground) {
@@ -153,7 +156,6 @@ app.use((err: ExpressError, req: Request, res: Response, next: NextFunction) => 
 	console.error(`Status Code: ${statusCode}, Message: ${err.message}`);
 	console.error(`****************ERROR******************`);
 	res.status(statusCode).render('error', { err });
-
 });
 
 app.listen(port, () => {

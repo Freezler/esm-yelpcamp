@@ -1,11 +1,13 @@
-import Joi from 'joi';
+import joi from 'joi';
 
-export const campgroundSchema = Joi.object({
-    campground: Joi.object({
-        title: Joi.string().required().trim(),
-        price: Joi.number().required().min(0).precision(2),
-        image: Joi.string().required().uri(),
-        location: Joi.string().required().trim(),
-        description: Joi.string().required().trim().min(10).max(1000)
+export const campgroundSchema = joi.object({
+    campground: joi.object({
+        title: joi.string().required(),
+        price: joi.number().required().min(0),
+        image: joi.string().required(),
+        description: joi.string().required(),
+        location: joi.string().required()
     }).required()
 });
+
+export default { campgroundSchema }
