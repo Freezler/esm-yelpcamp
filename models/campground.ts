@@ -6,6 +6,7 @@ export interface ICampground extends Document {
   description: string;
   location: string;
   image: string;
+  reviews: mongoose.Types.ObjectId[];
 }
 
 const CampgroundSchema = new Schema<ICampground>({
@@ -15,7 +16,15 @@ const CampgroundSchema = new Schema<ICampground>({
     type: String, required: true
   },
   location: { type: String, required: true },
-  image: { type: String }
+  image: { type: String },
+  reviews: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Review"
+    }
+  ]
+
+
 });
 
 export const Campground = mongoose.model<ICampground>("Campground", CampgroundSchema);

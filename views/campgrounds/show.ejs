@@ -2,7 +2,7 @@
 
     <div class="row mt-5">
         <div class="col-lg-6 offset-lg-3 offset-0">
-            <div class="card mb-5 border border-2 w-auto shadow-sm">
+            <div class="card mb-2 border border-2 w-auto shadow-sm">
                 <img src="<%= campground.image%>"
                     class=" card-img-top object-fit-cover card-img-top img-fluid h-100 w-100" alt="random image">
                 <div class="card-body">
@@ -30,6 +30,19 @@
                 <div class="card-footer text-muted border border-1">
                     just now!
                 </div>
+
             </div>
+            <h2 class="my-3">Leave a Review</h2>
+            <form action="">
+                <div class="mb-3">
+                    <label class="form-label" for="rating">Rating 1 - 5</label>
+                    <input type="range" min="1" max="5" class="form-range" id="rating" name="name[rating]">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="body">Review</label>
+                    <textarea class="form-control" id="body" name="name[body]" cols="30" rows="3"></textarea>
+                </div>
+
+            </form>
         </div>
     </div>
