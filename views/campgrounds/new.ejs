@@ -9,49 +9,57 @@
           <div class="valid-feedback">
             Looks good!
           </div>
-        </div>
-        <div class="mb-3">
-          <label class="form-label" for="location">Location</label>
-          <input class="form-control" type="text" id="location" name="campground[location]" required>
-          <div class="valid-feedback">
-            Looks good!
-          </div>
-        </div>
-        <div class="mb-3">
-          <label class="form-label" for="image">Image Url</label>
-          <input class="form-control" type="text" id="image" name="campground[image]" required>
-          <div class="valid-feedback">
-            Looks good!
-          </div>
-        </div>
-        <div class="mb-3">
-          <label class="form-label" for="price">Campground Price</label>
-          <div class="input-group">
-            <span class="input-group-text" id="price-label">$</span>
-            <input type="text" class="form-control" id="price" placeholder="0.00" aria-label="price"
-              aria-describedby="price-label" name="campground[price]" required>
-          </div>
-          <div class="valid-feedback">
-            Looks good!
-          </div>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="description">Description</label>
-          <textarea class="form-control" type="text" id="description" name="campground[description]"
-            required></textarea>
-          <div class="valid-feedback">
-            Looks good!
-          </div>
-        </div>
-        <div class="d-flex justify-content-around">
-          <div class="mb-3">
-            <button class="btn btn-outline-dark w-100">Add a Camp</button>
+          <div class="invalid-feedback">
+            Please provide a valid title.
           </div>
           <div class="mb-3">
-            <a href="/campgrounds" class="btn btn-outline-dark w-100">Show all Camps</a>
+            <label class="form-label" for="location">Location</label>
+            <input class="form-control" type="text" id="location" name="campground[location]" required>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+            <div class="invalid-feedback">
+              Please provide a valid location.
+            </div>
           </div>
-        </div>
+          <div class="mb-3">
+            <label class="form-label" for="image">Image Url</label>
+            <input class="form-control" type="text" id="image" name="campground[image]" required>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+            <div class="invalid-feedback">
+              Please provide a valid image url.
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="price">Campground Price</label>
+            <div class="input-group">
+              <span class="input-group-text" id="price-label">€</span>
+              <input type="text" class="form-control" id="price" placeholder="0.00" step="price"
+                aria-describedby="price-label" name="campground[price]" required>
+            </div>
+          </div>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
 
+          <div class="mb-3">
+            <label class="form-label" for="description">Description</label>
+            <textarea class="form-control" type="text" id="description" name="campground[description]"
+              required></textarea>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+          </div>
+          <div class="d-flex justify-content-around">
+            <div class="mb-3">
+              <button class="btn btn-outline-dark w-100">Add a Camp</button>
+            </div>
+            <div class="mb-3">
+              <a href="/campgrounds" class="btn btn-outline-dark w-100">Show all Camps</a>
+            </div>
+          </div>
+
+        </div>
     </div>
-  </div>

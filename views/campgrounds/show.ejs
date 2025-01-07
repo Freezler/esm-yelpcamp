@@ -1,7 +1,7 @@
 <% layout('layouts/boilerplate')%>
 
-	<div class="row mt-5 d-grid">
-		<div class="col-lg-6 offset-lg-3 offset-0">
+	<div class="row mt-5">
+		<div class="col-lg-6 ">
 			<div class="card mb-2 border border-2 w-auto shadow-sm">
 				<img src="<%= campground.image%>"
 					class=" card-img-top object-fit-cover card-img-top  h-100 w-100 card-img-top" alt="random image">
@@ -17,7 +17,7 @@
 					<li class="list-group-item text-muted">
 						<%= campground.location%>
 					</li>
-					<li class="list-group-item">$<%= campground.price%>/night</li>
+					<li class="list-group-item">€<%= campground.price.toFixed(2) %>/night</li>
 				</ul>
 				<div class=" w-100 card-body gap-1 d-flex flex-row justify-items-center">
 					<a class=" btn btn-outline-dark w-100 mb-2 " href="/campgrounds/<%=campground._id%>/edit">Edit</a>
@@ -30,54 +30,82 @@
 					<% const averageRating=(campground.reviews.reduce((sum, review)=> sum + review.rating, 0) /
 						campground.reviews.length).toFixed(1) %>
 						<div class="btn bg-info w-50 text-white align-self-center mb-3">
-							Average Rating: <%= averageRating %> / 5
+							Avg. Rating: <%= averageRating %> / 5
 						</div>
 						<% } else { %>
 							<div class="btn bg-secondary w-50 text-white align-self-center mb-3">
-								Not enough reviews yet
+								No reviews yet
 							</div>
 							<% } %>
 								<div class="card-footer text-muted border border-1">
-									just now!
+									Created on: <%= new Date(campground.createdOn).toLocaleDateString('nl-NL', {
+										weekday: 'short' , year: 'numeric' , month: 'short' , day: 'numeric' }) %>
+										<%= new Date(campground.createdOn).toLocaleTimeString('nl-NL', { hour: '2-digit'
+											, minute: '2-digit' }) %>
 								</div>
+
 			</div>
+
+
+
+		</div>
+		<div class="col-lg-6 my-auto h-25">
 			<h2 class="my-3">Leave a Review</h2>
-			<form action="/campgrounds/<%= campground._id%>/reviews" method="POST" class="mb-3">
-				<div class="mb-3"></div>
-				<label class="form-label" for="rating"></label>
-				<input type="range" min="1" max="5" step="0.5" class="form-range" id="rating" name="review[rating]">
+			<form action="/campgrounds/<%= campground._id %>/reviews" method="POST" novalidate
+				class="mb-3 validated-form" id="reviewForm">
 				<div class="mb-3">
+					<label class="form-label" for="rating">Rating: <span id="ratingValue">3</span></label>
+					<input type="range" min="1" max="5" step="0.5" class="form-range" id="rating" name="review[rating]"
+						value="3">
+				</div>
+				<div class="valid-feedback">
+					Looks good!
 				</div>
 				<div class="mb-3">
 					<label class="form-label" for="body">Review</label>
-					<textarea class="form-control " id="body" name="review[body]" rows="3"></textarea>
+					<textarea class="form-control" id="body" name="review[body]" cols="30" rows="3"></textarea>
 				</div>
-				<button class="btn btn-success " type="submit">Submit review</button>
+				<div class="valid-feedback">
+					Looks good!
+				</div>
+				<button class="btn btn-success" type="submit">Submit review</button>
 			</form>
 			<div class="my-3">
-				<h2 class="form-text">Reviews</h2>
-				<% if(campground.reviews <=0){ %>
-					<div class="alert alert-warning  p-5  rounded-3 shadow-sm " role="alert">
-						No reviews yet!
-					</div>
-					<% } %>
-						<% if(campground.reviews.length> 0) { %>
+				<h2>Reviews</h2>
+				<ul class="list-group list-group-flush">
+					<% campground.reviews.forEach(function(review){ %>
+						<li class="list-group-item mb-3
+								                        <% if (review.rating >= 4) { %> list-group-item-success
+								                        <% } else if (review.rating === 3) { %> list-group-item-warning
+								                        <% } else { %> list-group-item-danger <% } %>">
+							<div class="card card-body  ">
+								<strong class="card-title">Rating: <%= review.rating %></strong>
+								<p class="card-text">
+									<%= review.body %>
+								</p>
+							</div>
+						</li>
+						<% }) %>
+				</ul>
+				<div class="col-6">
 
-							<% } %>
-								<ul class="list-group list-group-flush gap-4">
-									<% campground.reviews.forEach(function(review){ %>
-										<li class="list-group-item p-5 rounded-3 shadow-sm
-													<% if (review.rating >= 4) { %>
-														list-group-item-success
-													<% } else if (review.rating === 3) { %>
-														list-group-item-warning
-													<% } else { %>
-														list-group-item-danger
-													<% } %>
-												">
-											<strong>Rating: <%= review.rating %></strong> - <%= review.body %>
-										</li>
-										<% }) %>
-								</ul>
+				</div>
 			</div>
+
 		</div>
+	</div>
+
+	<script>
+		const ratingInput = document.getElementById('rating');
+		const ratingDisplay = document.getElementById('ratingValue');
+		ratingInput.addEventListener('input', () => {
+			ratingDisplay.textContent = ratingInput.value;
+		});
+		document.getElementById('reviewForm').addEventListener('submit', function (event) {
+			if (!this.checkValidity()) {
+				event.preventDefault();
+				event.stopPropagation();
+			}
+			this.classList.add('was-validated');
+		});
+	</script>

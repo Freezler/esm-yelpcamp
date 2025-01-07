@@ -2,19 +2,22 @@ import joi from 'joi';
 
 export const campgroundSchema = joi.object({
     campground: joi.object({
-        title: joi.string().required(),
-        price: joi.number().required().min(0),
-        image: joi.string().required(),
-        description: joi.string().required(),
-        location: joi.string().required()
+        title: joi.string(),
+        price: joi.number().min(0),
+        image: joi.string(),
+        description: joi.string(),
+        location: joi.string(),
+        createdOn: joi.date().default(() => new Date())
     }).required()
 });
 
 export const reviewSchema = joi.object({
     review: joi.object({
-        body: joi.string().required(),
-        rating: joi.number().required().min(1).max(5)
+        body: joi.string(),
+        rating: joi.number().min(1).max(5)
     }).required()
 });
+campgroundSchema.validate({})
+reviewSchema.validate({})
 
-export default { campgroundSchema, reviewSchema }
+export default { campgroundSchema, reviewSchema };

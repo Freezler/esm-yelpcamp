@@ -94,11 +94,11 @@ app.get("/campgrounds/new", (req: Request, res: Response) => {
 });
 
 app.post('/campgrounds', validateCampground, catchAsync(async (req: Request, res: Response, next: NextFunction) => {
-	// if (!req.body.campground) throw new ExpressError('Invalid Campground Data', 400);
-
-	const campground = new Campground(req.body.campground);
+	const campground = new Campground({
+		...req.body.campground
+	});
 	await campground.save();
-	res.redirect(`campgrounds/${campground._id}`);
+	res.redirect(`/campgrounds/${campground._id}`);
 }));
 
 app.post('/detect-language', (req: Request, res: Response) => {

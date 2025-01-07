@@ -26,6 +26,9 @@ importers:
       express:
         specifier: ^4.21.2
         version: 4.21.2
+      flash:
+        specifier: ^1.1.0
+        version: 1.1.0
       franc:
         specifier: ^6.2.0
         version: 6.2.0
@@ -468,6 +471,9 @@ packages:
   finalhandler@1.3.1:
     resolution: {integrity: sha512-6BN9trH7bp3qvnrRyzsBz+g3lZxTNZTbVO2EV1CS0WIcDbawYVdYvGflME/9QP0h0pYlCDBCTjYa9nZzMDpyxQ==}
     engines: {node: '>= 0.8'}
+
+  flash@1.1.0:
+    resolution: {integrity: sha512-2pvqSI88nkPRSyh8kOJV0TqxlfLjZKS9b2jDf67RWGeIyicEGJoDovSyVS9zdiWbx/M9jzZkmFB5TSdaeBNSZA==}
 
   forwarded@0.2.0:
     resolution: {integrity: sha512-buRG0fpBtRHSTCOASe6hD258tEubFoRLb4ZNA6NxMVHNw2gOcwHo9wyablzMzOA5z9xA9L1KNjk/Nt6MT9aYow==}
@@ -1164,6 +1170,8 @@ snapshots:
       unpipe: 1.0.0
     transitivePeerDependencies:
       - supports-color
+
+  flash@1.1.0: {}
 
   forwarded@0.2.0: {}
 
