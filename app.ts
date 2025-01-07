@@ -1,16 +1,21 @@
-import ejsMate from "ejs-mate";
+// 1. Node.js built-in modules
+import path, { dirname } from "path";
+import { fileURLToPath } from "url";
+
+// 2. Third-party modules
 import express, { Application, NextFunction, Request, Response } from "express";
 import methodOverride from "method-override";
 import mongoose from "mongoose";
 import morgan from "morgan";
-import path, { dirname } from "path";
-import { fileURLToPath } from "url";
+import ejsMate from "ejs-mate";
+
+// 3. Custom modules
+import catchAsync from "./utils/catchAsync.ts";
+import { ExpressError } from "./utils/ExpressError.ts";
+import { detectLanguages } from "./utils/languageDetection.ts";
 import { Campground } from "./models/campground.ts";
 import Review from "./models/review.ts";
 import { campgroundSchema, reviewSchema } from "./schemas.ts";
-import catchAsync from "./utils/catchAsync.ts";
-import { ExpressError } from './utils/ExpressError.ts';
-import { detectLanguages } from "./utils/languageDetection.ts";
 
 const app: Application = express();
 const port = process.env.PORT || 3000;
@@ -161,6 +166,13 @@ app.post('/campgrounds/:id/reviews', validateReview, catchAsync(async (req: Requ
 	await campground.save();
 	res.redirect(`/campgrounds/${campground._id}`);
 }));
+
+app.delete('/campgrounds/:id/reviews/:reviewId', catchAsync(async (req: Request, res: Response) => {
+	const { id, reviewId } = req.params;
+	await Campground.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
+	await Review.findByIdAndDelete(reviewId);
+	res.redirect(`/campgrounds/${id}`);
+}))
 
 app.all('*', (req: Request, res: Response, next: NextFunction) => {
 	next(new ExpressError('Page not found', 404));

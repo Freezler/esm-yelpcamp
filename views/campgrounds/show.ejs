@@ -1,10 +1,10 @@
 <% layout('layouts/boilerplate')%>
 
-	<div class="row mt-5">
+	<div class="row my-5">
 		<div class="col-lg-6 ">
 			<div class="card mb-2 border border-2 w-auto shadow-sm">
-				<img src="<%= campground.image%>"
-					class=" card-img-top object-fit-cover card-img-top  h-100 w-100 card-img-top" alt="random image">
+				<img src="<%= campground.image%>" class=" card-img-top object-fit-cover card-img-top  h-100 w-100 card-img-top"
+					alt="random image">
 				<div class="card-body">
 					<h5 class="card-title">
 						<%= campground.title%>
@@ -23,7 +23,7 @@
 					<a class=" btn btn-outline-dark w-100 mb-2 " href="/campgrounds/<%=campground._id%>/edit">Edit</a>
 					<a class="card-link btn btn-outline-dark  w-100 mb-2" href="/campgrounds/">back</a>
 					<form class="" action=" /campgrounds/<%=campground._id%>?_method=DELETE" method="POST">
-						<button class="card-linktext-center btn btn-danger mb-2 w-100" type="submit">Delete</button>
+						<button class="card-linktext-center btn btn-outline-danger mb-2 w-100" type="submit">Delete</button>
 					</form>
 				</div>
 				<% if (campground.reviews.length> 0) { %>
@@ -38,54 +38,50 @@
 							</div>
 							<% } %>
 								<div class="card-footer text-muted border border-1">
-									Created on: <%= new Date(campground.createdOn).toLocaleDateString('nl-NL', {
-										weekday: 'short' , year: 'numeric' , month: 'short' , day: 'numeric' }) %>
-										<%= new Date(campground.createdOn).toLocaleTimeString('nl-NL', { hour: '2-digit'
-											, minute: '2-digit' }) %>
+									Created on: <%= new Date(campground.createdOn).toLocaleDateString('nl-NL', { weekday: 'short' ,
+										year: 'numeric' , month: 'short' , day: 'numeric' }) %>
+										<%= new Date(campground.createdOn).toLocaleTimeString('nl-NL', { hour: '2-digit' , minute: '2-digit'
+											}) %>
 								</div>
 
 			</div>
 
-
-
 		</div>
 		<div class="col-lg-6 my-auto h-25">
-			<h2 class="my-3">Leave a Review</h2>
-			<form action="/campgrounds/<%= campground._id %>/reviews" method="POST" novalidate
-				class="mb-3 validated-form" id="reviewForm">
+			<h2 class="my-3 text-center">Leave a Review</h2>
+			<form action="/campgrounds/<%= campground._id %>/reviews" method="POST" novalidate class="mb-3 validated-form"
+				id="reviewForm">
 				<div class="mb-3">
 					<label class="form-label" for="rating">Rating: <span id="ratingValue">3</span></label>
-					<input type="range" min="1" max="5" step="0.5" class="form-range" id="rating" name="review[rating]"
-						value="3">
-				</div>
-				<div class="valid-feedback">
-					Looks good!
+					<input type="range" min="1" max="5" step="0.5" class="form-range" id="rating" name="review[rating]" value="3">
+
 				</div>
 				<div class="mb-3">
-					<label class="form-label" for="body">Review</label>
-					<textarea class="form-control" id="body" name="review[body]" cols="30" rows="3"></textarea>
+					<label class="form-label" for="body">add your review</label>
+					<textarea class="form-control" id="body" name="review[body]" cols="30" rows="3" required></textarea>
+					<button class="btn btn-outline-success mt-3 float-end" type="submit">Submit review</button>
+
+					<div class="invalid-feedback ">
+						Please provide a valid review.
+					</div>
 				</div>
-				<div class="valid-feedback">
-					Looks good!
-				</div>
-				<button class="btn btn-success" type="submit">Submit review</button>
 			</form>
 			<div class="my-3">
-				<h2>Reviews</h2>
+				<h2 class="mx-4  my-3 w-100">Reviews</h2>
 				<ul class="list-group list-group-flush">
-					<% campground.reviews.forEach(function(review){ %>
-						<li class="list-group-item mb-3
-								                        <% if (review.rating >= 4) { %> list-group-item-success
-								                        <% } else if (review.rating === 3) { %> list-group-item-warning
-								                        <% } else { %> list-group-item-danger <% } %>">
-							<div class="card card-body  ">
-								<strong class="card-title">Rating: <%= review.rating %></strong>
-								<p class="card-text">
-									<%= review.body %>
+					<% for(let review of campground.reviews) { %>
+						<div class="card mb-3 px-3">
+							<div class="card-body">
+								<h5 class="card-title">Rating: <%= review.rating %>
+								</h5>
+								<p class="card-text">Review: <%= review.body %>
 								</p>
+								<form action="/campgrounds/<%=campground._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
+									<button class="btn btn-sm btn-outline-danger float-end ">Delete</button>
+								</form>
 							</div>
-						</li>
-						<% }) %>
+						</div>
+						<% } %>
 				</ul>
 				<div class="col-6">
 

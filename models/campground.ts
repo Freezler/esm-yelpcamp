@@ -1,4 +1,5 @@
 import mongoose, { Document, Schema } from "mongoose";
+import Review from "./review.ts";
 
 export interface ICampground extends Document {
   title: string;
@@ -25,6 +26,18 @@ const CampgroundSchema = new Schema<ICampground>({
   ]
 
 }, { timestamps: { createdAt: 'createdOn' } });
+
+CampgroundSchema.post('findOneAndDelete', async function (doc) {
+  if (doc) {
+    await Review.deleteMany({
+      _id: {
+        $in: doc.reviews
+      }
+    })
+  }
+})
+
 export const Campground = mongoose.model<ICampground>("Campground", CampgroundSchema);
+
 
 export default Campground;
