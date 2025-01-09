@@ -1,13 +1,11 @@
-import express from 'express';
-import { Router } from 'express';
-const router: Router = express.Router({ mergeParams: true});
-import catchAsync from '../utils/catchAsync.ts';
-import { NextFunction, Request, Response } from 'express';
-import { ExpressError } from '../utils/ExpressError.ts';
-import { reviewSchema } from "../schemas.ts";
-import { Review } from '../models/review.ts';
+import express, { NextFunction, Request, Response, Router } from 'express';
 import { Campground } from '../models/campground.ts';
+import { Review } from '../models/review.ts';
+import { reviewSchema } from "../schemas.ts";
+import catchAsync from '../utils/catchAsync.ts';
+import { ExpressError } from '../utils/ExpressError.ts';
 
+const router: Router = express.Router({ mergeParams: true });
 const validateReview = (req: Request, res: Response, next: NextFunction) => {
     const { error } = reviewSchema.validate(req.body);
     if (error) {

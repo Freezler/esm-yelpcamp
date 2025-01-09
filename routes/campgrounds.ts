@@ -1,12 +1,10 @@
-import express from 'express';
-import { Router } from 'express';
-import { NextFunction, Request, Response } from 'express';
+import express, { NextFunction, Request, Response, Router } from 'express';
 import catchAsync from '../utils/catchAsync.ts';
 import { ExpressError } from '../utils/ExpressError.ts';
 import { campgroundSchema } from '../schemas.ts';
 import { Campground } from '../models/campground.ts';
-const router: Router = express.Router();
 
+const router: Router = express.Router({ mergeParams: true });
 const validateCampground = (req: Request, res: Response, next: NextFunction) => {
     const { error } = campgroundSchema.validate(req.body);
     if (error) {
