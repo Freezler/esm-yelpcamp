@@ -2,6 +2,7 @@ import mongoose, { Document, Schema } from "mongoose";
 import Review from "./review.ts";
 
 export interface ICampground extends Document {
+  _id: mongoose.Types.ObjectId;
   title: string;
   price: number;
   description: string;
