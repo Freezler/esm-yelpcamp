@@ -1,10 +1,11 @@
-import ejsMate from "ejs-mate";
-import express, { Application, NextFunction, Request, Response } from "express";
-import methodOverride from "method-override";
-import mongoose from "mongoose";
-import morgan from "morgan";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
+import express, { Application, NextFunction, Request, Response } from "express";
+import methodOverride from "method-override";
+import ejsMate from "ejs-mate";
+import Session from "express-session";
+import mongoose from "mongoose";
+import morgan from "morgan";
 import campgrounds from "./routes/campgrounds.ts";
 import reviews from "./routes/reviews.ts";
 import { ExpressError } from "./utils/ExpressError.ts";
@@ -18,10 +19,24 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/yelp-camp
 	.catch(err => console.error("Database connection error:", err));
 
 app.use(express.urlencoded({ extended: true }))
-app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, "public")));
+app.use(methodOverride('_method'));
 app.use(morgan('tiny'));
-app.use(express.json());
+
+
+const sessionConfig: Session = {
+	secret: 'thisshouldbeabettersecret!',
+	resave: false,
+	saveUninitialized: true,
+	cookie: {
+		httpOnly: true,
+		expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+		maxAge: 1000 * 60 * 60 * 24 * 7
+	}
+}
+
+app.use(Session(sessionConfig));
+
 app.use('/campgrounds', campgrounds)
 app.use('/campgrounds/:id/reviews', reviews)
 
