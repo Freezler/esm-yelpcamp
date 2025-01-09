@@ -1,13 +1,17 @@
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
+import crypto from 'crypto';
+
 import express, { Application, NextFunction, Request, Response } from "express";
 import methodOverride from "method-override";
 import ejsMate from "ejs-mate";
 import Session from "express-session";
 import mongoose from "mongoose";
 import morgan from "morgan";
+
 import campgrounds from "./routes/campgrounds.ts";
 import reviews from "./routes/reviews.ts";
+
 import { ExpressError } from "./utils/ExpressError.ts";
 
 const app: Application = express();
@@ -24,18 +28,32 @@ app.use(methodOverride('_method'));
 app.use(morgan('tiny'));
 
 
-const sessionConfig: Session = {
-	secret: 'thisshouldbeabettersecret!',
+// const sessionConfig: Session = {
+// 	secret: 'thisshouldbeabettersecret!',
+// 	resave: false,
+// 	saveUninitialized: true,
+// 	cookie: {
+// 		httpOnly: true,
+// 		expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+// 		maxAge: 1000 * 60 * 60 * 24 * 7
+// 	}
+// }
+
+const secretKey = crypto.randomBytes(32);
+const sessionSecret = crypto.createHmac('sha256', secretKey).update('secure-session-secret').digest('hex');
+
+const sessionOptions = {
+	secret: sessionSecret,
 	resave: false,
-	saveUninitialized: true,
+	saveUninitialized: false,
 	cookie: {
 		httpOnly: true,
-		expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+		expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
 		maxAge: 1000 * 60 * 60 * 24 * 7
 	}
-}
+};
 
-app.use(Session(sessionConfig));
+app.use(Session(sessionOptions));
 
 app.use('/campgrounds', campgrounds)
 app.use('/campgrounds/:id/reviews', reviews)
