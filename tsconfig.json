@@ -16,7 +16,7 @@
   },
   "include": [
     "**/*.ts"
-  ],
+, "public/javascript/validateforms.js"  ],
   "exclude": [
     "node_modules"
   ]
