@@ -1,14 +1,15 @@
 <% layout('layouts/boilerplate')%>
 
-	<div class="row my-5">
-		<div class="col-lg-6 ">
-			<div class="card mb-2 border border-2 w-auto shadow-sm h-100">
-				<img  src="<%= campground.image%>"  class=" card-img-top object-fit-cover card-img-top h-100  w-100 card-img-top image-fluid"
+	<div class="row  mt-4 ">
+		<div style="padding-top:7px; max-height: 680px;height: 680px;" class="col-lg-6 h-100">
+			<div class="card border border-1 w-auto shadow-sm my-3">
+				<img src="<%= campground.image%>"
+					class=" card-img-top object-fit-cover card-img-top  w-100 card-img-top image-fluid"
 					alt="random image">
 				<div class="card-body">
-					<h5 class="card-title">
+					<h2 class="card-title" style="font-size: 20px;">
 						<%= campground.title%>
-					</h5>
+					</h2>
 					<p class="card-text">
 						<%= campground.description%>
 					</p>
@@ -19,65 +20,79 @@
 					</li>
 					<li class="list-group-item">€<%= campground.price.toFixed(2) %>/night</li>
 				</ul>
-				<div class=" w-100 card-body gap-1 d-flex flex-row justify-items-center">
-					<a class=" btn btn-outline-dark w-100 mb-2 " href="/campgrounds/<%=campground._id%>/edit">Edit</a>
-					<a class="card-link btn btn-outline-dark  w-100 mb-2" href="/campgrounds/">back</a>
-					<form class="" action=" /campgrounds/<%=campground._id%>?_method=DELETE" method="POST">
-						<button class="card-linktext-center btn btn-outline-danger mb-2 w-100" type="submit">Delete</button>
+				<div class="w-100  card-body gap-1 d-flex flex-row mx-auto my-auto align-items-center">
+					<a style="width:72px" class=" btn btn-outline-dark w-100 "
+						href="/campgrounds/<%=campground._id%>/edit">Edit</a>
+					<a style="width:72px" class="card-link btn btn-outline-dark   w-100" href="/campgrounds/">back</a>
+					<form style="width:72px" class="w-100" action=" /campgrounds/<%=campground._id%>?_method=DELETE"
+						method="POST">
+						<button style="width:98px" class="card-linktext-center btn btn-outline-danger w-100"
+							type="submit">Delete</button>
 					</form>
 				</div>
-				<% if (campground.reviews.length> 0) { %>
-					<% const averageRating=(campground.reviews.reduce((sum, review)=> sum + review.rating, 0) /
-						campground.reviews.length).toFixed(1) %>
-						<div class="btn bg-info w-50 text-white align-self-center mb-3">
-							Avg. Rating: <%= averageRating %> / 5
-						</div>
-						<% } else { %>
-							<div class="btn bg-secondary w-50 text-white align-self-center mb-3">
-								No reviews yet
-							</div>
-							<% } %>
-								<div class="card-footer text-muted border border-1">
-									Created on: <%= new Date(campground.createdOn).toLocaleDateString('nl-NL', { weekday: 'short' ,
-										year: 'numeric' , month: 'short' , day: 'numeric' }) %>
-										<%= new Date(campground.createdOn).toLocaleTimeString('nl-NL', { hour: '2-digit' , minute: '2-digit'
-											}) %>
-								</div>
-
-			</div>
-
-		</div>
-		<div class="col-lg-6 my-auto h-25">
-			<h2 class="my-3 text-center">Leave a Review</h2>
-			<form action="/campgrounds/<%= campground._id %>/reviews" method="POST" novalidate class="mb-3 validated-form"
-				id="reviewForm">
-				<div class="mb-3">
-					<label class="form-label" for="rating">Rating: <span id="ratingValue">3</span></label>
-					<input type="range" min="1" max="5" step="0.5" class="form-range" id="rating" name="review[rating]" value="3">
-
+				<div
+					class="card-footer text-muted border border-1 d-flex column align-items-center justify-content-start">
+					Created on: <%= new Date(campground.createdOn).toLocaleDateString('nl-NL', { weekday: 'short' ,
+						year: 'numeric' , month: 'short' , day: 'numeric' }) %>
+						<%= new Date(campground.createdOn).toLocaleTimeString('nl-NL', { hour: '2-digit' ,
+							minute: '2-digit' }) %>
 				</div>
-				<div class="mb-3">
-					<label class="form-label" for="body">add your review</label>
-					<textarea class="form-control" id="body" name="review[body]" cols="30" rows="3" required></textarea>
-					<button class="btn btn-outline-success mt-3 float-end" type="submit">Submit review</button>
+			</div>
+		</div>
+		<div style="padding-top:4px; max-height: 680px;height: 680px;" class="col-lg-6  h-100  overflow-hidden">
 
-					<div class="invalid-feedback ">
-						Please provide a valid review.
-					</div>
+			<h3 class="mt-4 mb-4 text-center">please leave a review</h3>
+			<form action="/campgrounds/<%= campground._id %>/reviews" method="POST" novalidate
+				class="mb-2 validated-form " id="reviewForm">
+				<div class="mb-3">
+					<label style="margin-left: 16px;" class="form-label" for="rating">Rating: <span
+							id="ratingValue">3</span></label>
+					<input type="range" min="1" max="5" step="0.5" class="form-range" id="rating" name="review[rating]"
+						value="3">
+				</div>
+				<div class="mb-1 w-100 d-flex flex-column">
+					<% if (campground.reviews.length> 0) { %>
+						<% const averageRating=(campground.reviews.reduce((sum, review)=> sum + review.rating, 0) /
+							campground.reviews.length).toFixed(1) %>
+							<div class="btn bg-info mx-auto text-white mb-0">
+								Avg. Rating: <%= averageRating %> / 5
+							</div>
+							<% } else { %>
+								<div class="btn bg-secondary w-50 text-white align-self-center mb-0">
+									No reviews yet
+								</div>
+								<% } %>
+
+									<label style="margin-left: 16px;" class="form-label" for="body">add your
+										review</label>
+									<textarea class="form-control" id="body" name="review[body]" cols="30" rows="3"
+										required></textarea>
+									<button style="width:98px;" class="btn btn-outline-success mt-3 float-end mx-auto "
+										type="submit">Submit
+									</button>
+
+									<div class="invalid-feedback">
+										Please provide a valid review.
+									</div>
 				</div>
 			</form>
-			<div class="my-3">
-				<h2 class="mx-4  my-3 w-100">Reviews</h2>
-				<ul class="list-group list-group-flush">
+			<div class="mt-0  ">
+				<h2 style="font-size: 20px; translate:  0px 0px" class="my-4 text-center">Reviews</h2>
+				<ul style="height: 208px;" class="list-group list-group-flush overflow-scroll mt-2 py-0 ">
 					<% for(let review of campground.reviews) { %>
-						<div class="card mb-3 px-3">
-							<div class="card-body">
+						<div style="height: 100px;" class="card mb-1 p-1 w-100 shadow-sm shadow ">
+							<div class="card-body ">
 								<h5 class="card-title">Rating: <%= review.rating %>
 								</h5>
 								<p class="card-text">Review: <%= review.body %>
 								</p>
-								<form action="/campgrounds/<%=campground._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
-									<button class="btn btn-sm btn-outline-danger float-end ">Delete</button>
+								<form style="width:98px;" class=" align-content-end float-end"
+									action="/campgrounds/<%=campground._id%>/reviews/<%=review._id%>?_method=DELETE"
+									method="POST">
+
+									<button style="width:98px;translate: 0px -62px;"
+										class="card-link text-center btn btn-outline-danger w-100 float-end"
+										type="submit">Delete</button>
 								</form>
 							</div>
 						</div>

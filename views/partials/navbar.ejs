@@ -1,5 +1,5 @@
-<nav class="navbar navbar-dark bg-dark container-fluid">
-    <div class="container-fluid">
+<nav style="background-color: oklch(32.00% 0.1166 348.9);" class="navbar navbar-dark  container-fluid h-100 ">
+    <div class="container-fluid px-2 py-1">
         <%- include('../partials/icon') %>
             <h1 class="text-xxl-start text-light pt-2">YELPCAMP</h1>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
@@ -7,10 +7,11 @@
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="offcanvas offcanvas-end bg-dark" tabindex="-1" id="offcanvasDarkNavbar"
+            <div style="background-color: oklch(32.00% 0.1166 348.9);" class="offcanvas offcanvas-end " tabindex="-1" id="offcanvasDarkNavbar"
                 aria-labelledby="offcanvasDarkNavbarLabel">
-                <div class="offcanvas-header">
-                    <h5 class="offcanvas-title text-light" id="offcanvasDarkNavbarLabel">Menu</h5>
+                <div class="offcanvas-header d-flex flex-rowjustify-content-center">
+                    <%- include('../partials/icon') %>
+                    <h5 class="offcanvas-title text-light " id="offcanvasDarkNavbarLabel "><span style="font-size: 44px;translate: 0px 0px;" class="">YelpCamp</span></h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
                         aria-label="Close"></button>
                 </div>
@@ -30,7 +31,7 @@
                     <form class="d-flex mt-3" role="search" action="/campgrounds/search" method="GET">
                         <input class="form-control me-2" type="search" name="searchQuery" placeholder="Search"
                             aria-label="Search">
-                        <button class="btn btn-success" type="submit">Search</button>
+                        <button class="btn btn-outline-light" type="submit">Search</button>
                     </form>
                 </div>
             </div>
