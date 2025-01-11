@@ -15,8 +15,9 @@
     "rootDir": "."
   },
   "include": [
-    "**/*.ts"
-, "public/javascript/validateforms.js"  ],
+    "**/*.ts",
+    "public/javascript/validateforms.js"
+  ],
   "exclude": [
     "node_modules"
   ]
