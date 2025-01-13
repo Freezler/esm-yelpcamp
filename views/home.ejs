@@ -1,26 +1,21 @@
 <% layout('layouts/boilerplate.ejs') %>
     <div id="landing-page"
-        class="text-center bg-image   object-fit-cover d-flex justify-content-center  flex-column align-content-center"
-        style="background-image: url('https://images.unsplash.com/photo-1534111575904-fde36052a775?q=80&w=2971&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');object-fit: cover; background-repeat: no-repeat;background-size: cover;background-position: center bottom;">
-        <div class="mask d-flex flex-column justify-content-center  border border-1 p-5 w-75 h-75justify-content-center align-self-center"
-            style="background-color: rgba(0, 0, 0, 0.4); width: 90%;border-radius:4px;">
+        class="text-center bg-image object-fit-cover d-flex justify-content-center flex-column align-content-center"
+        style="background-image:url('https://img.hipcamp.com/images/dpr_2.0/f_auto,q_auto/v1491972090/journal/fucvxp0vgfc2dcolyqts/fucvxp0vgfc2dcolyqts.jpg?_i=AA');top:1;bottom:1; background-repeat: no-repeat;background-size: cover;background-position:center 70%;filter: grayscale(100%);">
+        <div class="mask d-flex flex-column border border-0 p-5 w-75 h-50 justify-content-center align-self-center"
+            style="background-color: hsla(256, 81%, 11%, 0.583); width: 90%;border-radius:4px;">
             <div class="d-flex flex-column  align-items-center w-100">
-                <div class="text-white d-flex flex-column align-items-center justify-content-center">
+                <div class="text-white d-flex flex-column align-items-center ">
                     <h1 class="mb-3">welcome to YelpCamp</h1>
-
-                    <p class="mb-4 w-100 w-75">
-                        This is my first web app built with Node.js and Express.
-                        aimed on rebuilding a YelpCamp clone in typecript.
-                    </p>
-                    <a   style="font-size: 16px;"data-mdb-ripple-init class=" btn btn-outline-light btn-lg m-2 " href="/campgrounds/" role="button"
-                        rel="nofollow">all campgrounds</a>
+                    <p class="mb-4 w-100 w-75"> This is my first web app built with
+                        Node.js and Express. aimed on rebuilding a YelpCamp clone in
+                        typecript. </p> <a style="font-size: 16px;" data-mdb-ripple-init
+                        class=" btn btn-outline-light btn-lg m-2 " href="/campgrounds/" role="button" rel="nofollow">all
+                        campgrounds</a>
                 </div>
             </div>
         </div>
     </div>
-    <%- include('partials/footer.ejs') %>
-
-
     <script>
         async function detectLanguage() {
             const resultElement = document.getElementById('result');

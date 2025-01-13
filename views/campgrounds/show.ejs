@@ -1,107 +1,100 @@
-<% layout('layouts/boilerplate')%>
-
-	<div class="row  mt-4 ">
-		<div style="padding-top:7px; max-height: 680px;height: 680px;" class="col-lg-6 h-100">
-			<div class="card border border-1 w-auto shadow-sm my-3">
-				<img src="<%= campground.image%>"
-					class="lazyratio ratio-16x9 card-img-top object-fit-cover card-img-top  w-100 card-img-top image-fluid"
-					alt="random image">
+<% layout('layouts/boilerplate') %>
+	<div class="row  mt-4 h-100 d-flex justify-content-center align-items-center">
+		<div style="max-width:760px" class="col-xl-6 h-100 mx-auto ">
+			<div style="max-width:760px" class=" card border border-1 w-auto shadow-sm mx-auto"> <img
+					style="background-position: center center" src="<%= campground.image %>"
+					class=" image-responsive card-img-top object-fit-cover card-img-top  w-100 " alt="random image">
 				<div class="card-body">
 					<h2 class="card-title" style="font-size: 20px;">
-						<%= campground.title%>
+						<%= campground.title %>
 					</h2>
-					<p class="card-text">
-						<%= campground.description%>
-					</p>
+					<p style="max-width: 45ch" class="card-text flex-grow-0">
+						<%= campground.description %>
+							</pstyle>
 				</div>
 				<ul class="list-group list-group-flush">
 					<li class="list-group-item text-muted">
-						<%= campground.location%>
+						<%= campground.location %>
 					</li>
-					<li class="list-group-item">€<%= campground.price.toFixed(2) %>/night</li>
+					<li∫ class="list-group-item">€
+						<%= campground.price.toFixed(2) %>/night
+					</li∫>
 				</ul>
-				<div class="w-100  card-body gap-1 d-flex flex-row mx-auto my-auto align-items-center">
-					<a style="width:72px" class=" btn btn-outline-dark w-100 "
-						href="/campgrounds/<%=campground._id%>/edit">Edit</a>
-					<a style="width:72px" class="card-link btn btn-outline-dark   w-100" href="/campgrounds/">back</a>
-					<form style="width:72px" class="w-100" action=" /campgrounds/<%=campground._id%>?_method=DELETE"
-						method="POST">
-						<button style="width:98px" class="card-linktext-center btn btn-outline-danger w-100"
+				<div class="w-100  card-body gap-1 d-flex flex-row  mx-auto justify-content-center align-items-center">
+					<a style="width:92px" class=" btn btn-outline-dark "
+						href="/campgrounds/<%= campground._id %>/edit">Edit</a>
+					<a style="width:92px" class="card-link btn btn-outline-dark   " href="/campgrounds/">back</a>
+					<form action=" /campgrounds/<%= campground._id %>?_method=DELETE" method="POST"> <button
+							style="width:92px" class="card-link text-center btn btn-outline-danger "
 							type="submit">Delete</button>
 					</form>
 				</div>
 				<div
 					class="card-footer text-muted border border-1 d-flex column align-items-center justify-content-start">
-					Created on: <%= new Date(campground.createdOn).toLocaleDateString('nl-NL', { weekday: 'short' ,
-						year: 'numeric' , month: 'short' , day: 'numeric' }) %>
-						<%= new Date(campground.createdOn).toLocaleTimeString('nl-NL', { hour: '2-digit' ,
-							minute: '2-digit' }) %>
+					Created on:
+					<%= new Date(campground.createdOn).toLocaleDateString('nl-NL', {weekday: 'short' ,year: 'numeric'
+						,month: 'short' ,day: 'numeric' }) %>
+						<%= new Date(campground.createdOn).toLocaleTimeString('nl-NL', {hour: '2-digit'
+							,minute: '2-digit' }) %>
 				</div>
 			</div>
 		</div>
-		<div style="padding-top:4px; max-height: 680px;height: 680px;" class="col-lg-6  h-100  overflow-hidden">
-
-			<h3 class="mt-4 mb-4 text-center">please leave a review</h3>
+		<div style="max-width:760px" class="col-md-6 mx-auto h-100  overflow-hidden">
+			<h3 class="mt-5 mb-4 text-center">please leave a review</h3>
 			<form action="/campgrounds/<%= campground._id %>/reviews" method="POST" novalidate
 				class="mb-2 validated-form " id="reviewForm">
-				<div class="mb-3">
-					<label style="margin-left: 16px;" class="form-label" for="rating">Rating: <span
-							id="ratingValue">3</span></label>
-					<input type="range" min="1" max="5" step="0.5" class="form-range" id="rating" name="review[rating]"
-						value="3">
-				</div>
+				<div class="mb-3"> <label style="margin-left: 16px;" class="form-label" for="rating">Rating: <span
+							id="ratingValue">3</span></label> <input type="range" min="1" max="5" step="0.5"
+						class="form-range" id="rating" name="review[rating]" value="3"> </div>
 				<div class="mb-1 w-100 d-flex flex-column">
 					<% if (campground.reviews.length> 0) { %>
-						<% const averageRating=(campground.reviews.reduce((sum, review)=> sum + review.rating, 0) /
-							campground.reviews.length).toFixed(1) %>
-							<div class="btn bg-info mx-auto text-white mb-0">
-								Avg. Rating: <%= averageRating %> / 5
+						<% const averageRating=(campground.reviews.reduce((sum, review)=> sum + review.rating, 0)
+							/campground.reviews.length).toFixed(1) %>
+							<div class="btn bg-info mx-auto text-white mb-0"> Avg.
+								Rating:
+								<%= averageRating %>/ 5
 							</div>
 							<% } else { %>
-								<div class="btn bg-secondary w-50 text-white align-self-center mb-0">
-									No reviews yet
-								</div>
-								<% } %>
-
-									<label style="margin-left: 16px;" class="form-label" for="body">add your
+								<div class="btn bg-secondary w-50 text-white  mb-0">
+									No reviews yet </div>
+								<% } %><label style="margin-left: 16px;" class="form-label" for="body">add your
 										review</label>
 									<textarea class="form-control" id="body" name="review[body]" cols="30" rows="3"
 										required></textarea>
-									<button style="width:98px;" class="btn btn-outline-success mt-3 float-end mx-auto "
+									<button style="width:92px" class="btn btn-outline-success mt-3 mx-auto ml-100 "
 										type="submit">Submit
 									</button>
-
-									<div class="invalid-feedback">
-										Please provide a valid review.
+									<div class="invalid-feedback"> Please provide a valid review.
 									</div>
 				</div>
 			</form>
-			<div class="mt-0  ">
-				<h2 style="font-size: 20px; translate:  0px 0px" class="my-4 text-center">Reviews</h2>
-				<ul style="height: 208px;" class="list-group list-group-flush overflow-scroll mt-2 py-0 ">
-					<% for(let review of campground.reviews) { %>
-						<div style="height: 100px;" class="card mb-1 p-1 w-100 shadow-sm shadow ">
-							<div class="card-body ">
-								<h5 class="card-title">Rating: <%= review.rating %>
-								</h5>
-								<p class="card-text">Review: <%= review.body %>
-								</p>
-								<form style="width:98px;" class=" align-content-end float-end"
-									action="/campgrounds/<%=campground._id%>/reviews/<%=review._id%>?_method=DELETE"
-									method="POST">
-
-									<button style="width:98px;translate: 0px -62px;"
-										class="card-link text-center btn btn-outline-danger w-100 float-end"
+			<div class=" ">
+				<h2 style="font-size: 20px; translate:  0px 0px" class="mt-4  mb-5 text-center">Reviews</h2>
+				<ul style="height: 210px;" class="list-group list-group-flush overflow-scroll  ">
+					<% for (let review of campground.reviews) { %>
+						<div style="height: 94px" class="card  w-100 shadow-sm shadow ">
+							<div class="card-body d-flex  flex-row">
+								<div class="review-header d-flex flex-column">
+									<h5 class="card-title ">Rating:
+										<%= review.rating %>
+									</h5>
+									<div style="width: 55ch;word-wrap: break-word;"
+										class="card-text justify-content-center overflow-hidden ">
+										<p style="word-wrap: break-word; overflow-wrap: break-word;">Review:
+											<%= review.body %>
+										</p>
+									</div>
+								</div>
+								<form class=" "
+									action="/campgrounds/<%= campground._id %>/reviews/<%= review._id %>?_method=DELETE"
+									method="POST"> <button style="width:98px;"
+										class="card-link text-center btn  btn-outline-danger "
 										type="submit">Delete</button>
 								</form>
 							</div>
-						</div>
-						<% } %>
+							<% } %>
 				</ul>
-				<div class="col-6">
-
-				</div>
+				<div class="col-6"> </div>
 			</div>
-
 		</div>
 	</div>
