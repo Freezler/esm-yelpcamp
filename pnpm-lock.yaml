@@ -8,12 +8,12 @@ importers:
 
   .:
     dependencies:
-      '@types/express-session':
-        specifier: ^1.18.1
-        version: 1.18.1
       bootstrap:
         specifier: ^5.3.3
         version: 5.3.3(@popperjs/core@2.11.8)
+      connect-flash:
+        specifier: ^0.1.1
+        version: 0.1.1
       ejs:
         specifier: ^3.1.10
         version: 3.1.10
@@ -23,6 +23,9 @@ importers:
       express:
         specifier: ^4.21.2
         version: 4.21.2
+      express-messages:
+        specifier: ^1.0.1
+        version: 1.0.1
       express-session:
         specifier: ^1.18.1
         version: 1.18.1
@@ -42,12 +45,18 @@ importers:
         specifier: ^1.10.0
         version: 1.10.0
     devDependencies:
+      '@types/connect-flash':
+        specifier: ^0.0.40
+        version: 0.0.40
       '@types/ejs':
         specifier: ^3.1.5
         version: 3.1.5
       '@types/express':
         specifier: ^5.0.0
         version: 5.0.0
+      '@types/express-session':
+        specifier: ^1.18.1
+        version: 1.18.1
       '@types/method-override':
         specifier: ^3.0.0
         version: 3.0.0(@types/express@5.0.0)
@@ -55,11 +64,11 @@ importers:
         specifier: ^1.9.9
         version: 1.9.9
       '@types/node':
-        specifier: ^22.10.6
-        version: 22.10.6
+        specifier: ^22.10.7
+        version: 22.10.7
       ts-node:
         specifier: ^10.9.2
-        version: 10.9.2(@types/node@22.10.6)(typescript@5.7.3)
+        version: 10.9.2(@types/node@22.10.7)(typescript@5.7.3)
       tsx:
         specifier: ^4.19.2
         version: 4.19.2
@@ -260,6 +269,9 @@ packages:
   '@types/body-parser@1.19.5':
     resolution: {integrity: sha512-fB3Zu92ucau0iQ0JMCFQE7b/dv8Ot07NI3KaZIkIUNXq82k4eBAqUaneXfleGY9JWskeS9y+u0nXMyspcuQrCg==}
 
+  '@types/connect-flash@0.0.40':
+    resolution: {integrity: sha512-vqGDzZ85Kyu/tKdDwXP6JCz4i2Xp3o4bYHSCXbF7XiL1HohogtGXG5pgbgypVbdO3DYqCOHIiZhp2Gh5fP2dDw==}
+
   '@types/connect@3.4.38':
     resolution: {integrity: sha512-K6uROf1LD88uDQqJCktA4yzL1YYAK6NgfsI0v/mTgyPKWsX1CnJ0XPSDhViejru1GcRkLWb8RlzFYJRqGUbaug==}
 
@@ -289,8 +301,8 @@ packages:
   '@types/morgan@1.9.9':
     resolution: {integrity: sha512-iRYSDKVaC6FkGSpEVVIvrRGw0DfJMiQzIn3qr2G5B3C//AWkulhXgaBd7tS9/J79GWSYMTHGs7PfI5b3Y8m+RQ==}
 
-  '@types/node@22.10.6':
-    resolution: {integrity: sha512-qNiuwC4ZDAUNcY47xgaSuS92cjf8JbSUoaKS77bmLG1rU7MlATVSiw/IlrjtIyyskXBZ8KkNfjK/P5na7rgXbQ==}
+  '@types/node@22.10.7':
+    resolution: {integrity: sha512-V09KvXxFiutGp6B7XkpaDXlNadZxrzajcY50EuoLIpQ6WWYCSvf19lVIazzfIzQvhUN2HjX12spLojTnhuKlGg==}
 
   '@types/qs@6.9.18':
     resolution: {integrity: sha512-kK7dgTYDyGqS+e2Q4aK9X3D7q234CIZ1Bv0q/7Z5IwRDoADNU81xXJK/YVyLbLTZCoIwUoDoffFeF+p/eIklAA==}
@@ -387,6 +399,10 @@ packages:
 
   concat-map@0.0.1:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
+
+  connect-flash@0.1.1:
+    resolution: {integrity: sha512-2rcfELQt/ZMP+SM/pG8PyhJRaLKp+6Hk2IUBNkEit09X+vwn3QsAL3ZbYtxUn7NVPzbMTSLRDhqe0B/eh30RYA==}
+    engines: {node: '>= 0.4.0'}
 
   content-disposition@0.5.4:
     resolution: {integrity: sha512-FveZTNuGw04cxlAiWbzi6zTAL/lhehaWbTtgluJh4/E95DqMwTmha3KZN1aAWA8cFIhHzMZUvLevkw5Rqk+tSQ==}
@@ -497,6 +513,10 @@ packages:
   etag@1.8.1:
     resolution: {integrity: sha512-aIL5Fx7mawVa300al2BnEE4iNvo1qETxLrPI/o05L7z6go7fCw1J6EQmbK4FmJ2AS7kgVF/KEZWufBfdClMcPg==}
     engines: {node: '>= 0.6'}
+
+  express-messages@1.0.1:
+    resolution: {integrity: sha512-twwOvH1K0W7pPO/bz/Lq85GULnnZPQSPX3eLr7VRJyhQW9a+2vj9QI28r/AQhMu6bnNZkpxB/QflsDQi3hI7lQ==}
+    engines: {node: '>= 0.10.0'}
 
   express-session@1.18.1:
     resolution: {integrity: sha512-a5mtTqEaZvBCL9A9aqkrtfz+3SMDhOVUnjafjo+s7A9Txkq+SVX2DLvSp1Zrv4uCXa3lMSK3viWnh9Gg07PBUA==}
@@ -975,17 +995,21 @@ snapshots:
   '@types/body-parser@1.19.5':
     dependencies:
       '@types/connect': 3.4.38
-      '@types/node': 22.10.6
+      '@types/node': 22.10.7
+
+  '@types/connect-flash@0.0.40':
+    dependencies:
+      '@types/express': 5.0.0
 
   '@types/connect@3.4.38':
     dependencies:
-      '@types/node': 22.10.6
+      '@types/node': 22.10.7
 
   '@types/ejs@3.1.5': {}
 
   '@types/express-serve-static-core@5.0.4':
     dependencies:
-      '@types/node': 22.10.6
+      '@types/node': 22.10.7
       '@types/qs': 6.9.18
       '@types/range-parser': 1.2.7
       '@types/send': 0.17.4
@@ -1011,9 +1035,9 @@ snapshots:
 
   '@types/morgan@1.9.9':
     dependencies:
-      '@types/node': 22.10.6
+      '@types/node': 22.10.7
 
-  '@types/node@22.10.6':
+  '@types/node@22.10.7':
     dependencies:
       undici-types: 6.20.0
 
@@ -1024,12 +1048,12 @@ snapshots:
   '@types/send@0.17.4':
     dependencies:
       '@types/mime': 1.3.5
-      '@types/node': 22.10.6
+      '@types/node': 22.10.7
 
   '@types/serve-static@1.15.7':
     dependencies:
       '@types/http-errors': 2.0.4
-      '@types/node': 22.10.6
+      '@types/node': 22.10.7
       '@types/send': 0.17.4
 
   '@types/webidl-conversions@7.0.3': {}
@@ -1121,6 +1145,8 @@ snapshots:
   color-name@1.1.4: {}
 
   concat-map@0.0.1: {}
+
+  connect-flash@0.1.1: {}
 
   content-disposition@0.5.4:
     dependencies:
@@ -1214,6 +1240,8 @@ snapshots:
   escape-html@1.0.3: {}
 
   etag@1.8.1: {}
+
+  express-messages@1.0.1: {}
 
   express-session@1.18.1:
     dependencies:
@@ -1568,14 +1596,14 @@ snapshots:
     dependencies:
       punycode: 2.3.1
 
-  ts-node@10.9.2(@types/node@22.10.6)(typescript@5.7.3):
+  ts-node@10.9.2(@types/node@22.10.7)(typescript@5.7.3):
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
       '@tsconfig/node10': 1.0.11
       '@tsconfig/node12': 1.0.11
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.4
-      '@types/node': 22.10.6
+      '@types/node': 22.10.7
       acorn: 8.14.0
       acorn-walk: 8.3.4
       arg: 4.1.3

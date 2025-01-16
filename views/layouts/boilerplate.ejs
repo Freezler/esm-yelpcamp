@@ -8,7 +8,12 @@
 <body class="d-flex flex-column  bg-light font-serif antialiased min-vh-100 ">
     <%- include('../partials/navbar') %>
         <main class=" flex-grow-1 px-sm-5 " id="content">
-            <%- body %>
+            <% if (messages.length > 0) { %>
+                <div class="alert alert-success" role="alert">
+                    <%- messages %>
+                </div>
+                <% } %>
+                    <%- body %>
         </main>
         <%- include('../partials/footer') %>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

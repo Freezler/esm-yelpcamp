@@ -5,7 +5,8 @@ import crypto from 'crypto';
 import express, { Application, NextFunction, Request, Response } from "express";
 import methodOverride from "method-override";
 import ejsMate from "ejs-mate";
-import Session from "express-session";
+import session from "express-session";
+import flash from "connect-flash";
 import mongoose from "mongoose";
 import morgan from "morgan";
 
@@ -53,7 +54,14 @@ const sessionOptions = {
 	}
 };
 
-app.use(Session(sessionOptions));
+app.use(session(sessionOptions));
+
+app.use(flash());
+
+app.use((req: Request, res: Response, next: NextFunction) => {
+	res.locals.messages = req.flash('success');
+	next();
+});
 
 app.use('/campgrounds', campgrounds)
 app.use('/campgrounds/:id/reviews', reviews)
@@ -64,6 +72,7 @@ app.set("views", path.join(__dirname, "views"));
 
 
 app.get("/", (req: Request, res: Response) => {
+	req.flash('success', 'Welcome to Yelp Camp!');
 	res.render("home");
 });
 
