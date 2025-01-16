@@ -8,10 +8,59 @@
 <body class="d-flex flex-column  bg-light font-serif antialiased min-vh-100 ">
     <%- include('../partials/navbar') %>
         <main class=" flex-grow-1 px-sm-5 " id="content">
-            <% if (messages.length > 0) { %>
-                <div class="alert alert-success" role="alert">
+            <% if (messages.length> 0) { %>
+                <div class="alert text-bg-light alert-dismissible fade show px-2 pr-2" role="alert">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     <%- messages %>
                 </div>
+                <style>
+                    .alert {
+                        width: min(100%, 320px);
+                        max-width: 460px;
+                        height: 100px;
+                        position: absolute;
+                        bottom: 44px;
+                        right: 44px;
+                        background: rgba(140, 247, 132, 0.664);
+                        color: hsl(148, 9%, 27%);
+                        stroke: white;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        font-size: clamp(12px, 1.2vw, 16px);
+                        outline: none;
+                        padding: 16px;
+
+                        .btn-close {
+                            color: red;
+                            width: 16px;
+                            height: 16px;
+                            user-select: none;
+                            outline: none;
+                            outline-width: 0px;
+                        }
+
+                        z-index: 500;
+                        animation: fadeAndSlide 0.5s ease-in-out;
+
+                    }
+
+                    [data-bs-dismiss] svg {
+                        fill: red;
+                    }
+
+                    @keyframes fadeAndSlide {
+                        0% {
+                            opacity: 0;
+                            transform: translateY(20px);
+                        }
+
+                        100% {
+                            opacity: 1;
+                            transform: translateY(0);
+                        }
+                    }
+                </style>
                 <% } %>
                     <%- body %>
         </main>
